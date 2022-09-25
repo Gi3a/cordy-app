@@ -26,7 +26,6 @@ const Signup = () => {
             data: data
         })
             .then(function (response) {
-                const jwttoken = response.data.jwttoken;
                 console.log(response.data);
                 dispatch(setUser({
                     jwttoken: response.data.jwttoken,
@@ -39,7 +38,7 @@ const Signup = () => {
                     avatar: response.data.avatar,
                     ranking: response.data.ranking,
                 }));
-                // navigate('/');
+                navigate('/');
             })
             .catch(function (error) {
                 console.log(error)
@@ -102,7 +101,7 @@ const Signup = () => {
             <div className="form-control">
                 <label>Номер телефона</label>
                 <input
-                    type="number"
+                    type="tel"
                     name="phoneNumber"
                     {...register("phoneNumber", {
                         required: "Проверьте номер телефона",

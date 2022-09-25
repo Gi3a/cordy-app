@@ -26,11 +26,17 @@ const Login = () => {
             data: data
         })
             .then(function (response) {
-                const token = response.data.token
+                console.log(response.data)
                 dispatch(setUser({
-                    username: data.username,
-                    id: null,
-                    token: token
+                    jwttoken: response.data.jwttoken,
+                    id: response.data.id,
+                    login: response.data.login,
+                    name: response.data.name,
+                    phoneNumber: response.data.phoneNumber,
+                    mail: response.data.mail,
+                    address: response.data.address,
+                    avatar: response.data.avatar,
+                    ranking: response.data.ranking,
                 }));
                 navigate('/');
             })

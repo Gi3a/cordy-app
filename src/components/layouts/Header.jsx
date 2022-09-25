@@ -7,7 +7,7 @@ import { useAuth } from "../hooks/use-auth"
 const Header = () => {
 
     const dispatch = useDispatch();
-    const { isAuth, email } = useAuth();
+    const { isAuth, id } = useAuth();
 
     return (
         <header>
@@ -15,7 +15,7 @@ const Header = () => {
             {isAuth ?
                 <>
                     <button onClick={() => dispatch(unsetUser())}>
-                        Log out {email}</button>
+                        Log out {id}</button>
                 </>
                 :
                 <>
