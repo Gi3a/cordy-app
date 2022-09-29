@@ -1,0 +1,24 @@
+<svg width="328" height="359" viewBox="0 0 328 359" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect x="109" width="109" height="55" rx="10" fill="#8C7BC7"/>
+<path d="M36 114C36 108.477 40.4772 104 46 104H281C286.523 104 291 108.477 291 114V349C291 354.523 286.523 359 281 359H46C40.4772 359 36 354.523 36 349V114Z" fill="#CCC3EB"/>
+<g filter="url(#filter0_bi_577_136)">
+<rect y="68" width="328" height="54" rx="10" fill="#C2D5E0"/>
+</g>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M163.8 359C156.261 359 150.15 352.889 150.15 345.35V208.85C150.15 201.311 156.261 195.2 163.8 195.2C171.339 195.2 177.45 201.311 177.45 208.85V345.35C177.45 352.889 171.339 359 163.8 359Z" fill="#8C7BC7"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M218.4 359C210.861 359 204.75 352.889 204.75 345.35V208.85C204.75 201.311 210.861 195.2 218.4 195.2C225.939 195.2 232.05 201.311 232.05 208.85V345.35C232.05 352.889 225.939 359 218.4 359Z" fill="#8C7BC7"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M109.2 359C101.661 359 95.55 352.889 95.55 345.35L95.55 208.85C95.55 201.311 101.661 195.2 109.2 195.2C116.739 195.2 122.85 201.311 122.85 208.85L122.85 345.35C122.85 352.889 116.739 359 109.2 359Z" fill="#8C7BC7"/>
+<defs>
+<filter id="filter0_bi_577_136" x="-4" y="64" width="336" height="62" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feGaussianBlur in="BackgroundImage" stdDeviation="2"/>
+<feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_577_136"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_backgroundBlur_577_136" result="shape"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="0.2"/>
+<feGaussianBlur stdDeviation="1"/>
+<feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+<feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.8 0"/>
+<feBlend mode="normal" in2="shape" result="effect2_innerShadow_577_136"/>
+</filter>
+</defs>
+</svg>

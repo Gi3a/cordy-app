@@ -46,48 +46,49 @@ const Login = () => {
     }
 
     return (
+        <div className="page">
+            <form onSubmit={handleSubmit(onSubmit)}>
+                <h1>Вход</h1>
 
-        <form onSubmit={handleSubmit(onSubmit)}>
-            <h1>Вход</h1>
+                <div className="form-control">
+                    <label>Логин</label>
+                    <input
+                        type="text"
+                        name="username"
+                        {...register("username", {
+                            required: "Проверьте логин",
+                            minLength: {
+                                value: 3,
+                                message: "Логин состоит минимум из 3 символов"
+                            }
+                        })}
+                    />
+                    {errors.username && <span>{errors.username.message}</span>}
+                </div>
 
-            <div className="form-control">
-                <label>Логин</label>
-                <input
-                    type="text"
-                    name="username"
-                    {...register("username", {
-                        required: "Проверьте логин",
-                        minLength: {
-                            value: 3,
-                            message: "Логин состоит минимум из 3 символов"
-                        }
-                    })}
-                />
-                {errors.username && <span>{errors.username.message}</span>}
-            </div>
+                <div className="form-control">
+                    <label>Пароль</label>
+                    <input
+                        type="password"
+                        name="password"
+                        {...register("password", {
+                            required: "Проверьте пароль",
+                            minLength: {
+                                value: 6,
+                                message: "Пароль состоит минимум из 6 символов"
+                            }
+                        })}
+                    />
+                    {errors.password && <span>{errors.password.message}</span>}
+                </div>
 
-            <div className="form-control">
-                <label>Пароль</label>
-                <input
-                    type="password"
-                    name="password"
-                    {...register("password", {
-                        required: "Проверьте пароль",
-                        minLength: {
-                            value: 6,
-                            message: "Пароль состоит минимум из 6 символов"
-                        }
-                    })}
-                />
-                {errors.password && <span>{errors.password.message}</span>}
-            </div>
-
-            <div className="form-control">
-                <button type="submit">
-                    Войти
-                </button>
-            </div>
-        </form >
+                <div className="form-control">
+                    <button type="submit">
+                        Войти
+                    </button>
+                </div>
+            </form >
+        </div>
     )
 }
 
