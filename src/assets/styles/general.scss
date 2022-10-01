@@ -1,4 +1,4 @@
-@import "form.scss", "page.scss", "error.scss";
+@import "form.scss", "page.scss", "error.scss", "header.scss";
 
 * {
     margin: 0;
@@ -10,23 +10,4 @@
 
 a {
     text-decoration: none;
-}
-
-header {
-    display: flex;
-
-    border-bottom: 1px solid #ccc;
-
-
-    & a {
-        margin: 5px;
-        font-size: 20px;
-        padding: 10px;
-        color: #777;
-        transition: 0.4s all;
-
-        &:hover {
-            color: #000
-        }
-    }
 }
