@@ -1,7 +1,6 @@
 import React from 'react'
 import { Routes, Route } from 'react-router-dom'
 
-import './assets/styles/general.scss'
 
 import Layout from './components/layouts/Layout';
 
@@ -9,6 +8,8 @@ import Home from './components/pages/Home';
 import Signup from './components/pages/Signup';
 import Login from './components/pages/Login';
 import Profile from './components/pages/Profile';
+import Search from './components/pages/Search';
+import Favorites from './components/pages/Favorites';
 import CreateCat from './components/pages/CreateCat';
 import Error from './components/pages/Error';
 
@@ -29,11 +30,13 @@ function App() {
                     <Route element={<ProtectedRoutes />}>
                         <Route path="/" element={<Home />} />
                         <Route path="/:user_id" element={<Profile />} />
-                        <Route path="/create/cat" element={<CreateCat />} />
+                        <Route path="/pet" element={<CreateCat />} />
+                        <Route path="/search" element={<Search />} />
+                        <Route path="/favorites" element={<Favorites />} />
                     </Route>
 
                     <Route path="*" element={<Error />} />
-
+                    <Route path="/error/:type_error" element={<Error />} />
                 </Route>
             </Routes>
         </>

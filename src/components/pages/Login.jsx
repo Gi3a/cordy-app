@@ -2,6 +2,8 @@ import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
+import { toast } from 'react-toastify';
+
 import { setUser } from "../../store/features/user/userSlice";
 
 import axios from 'axios';
@@ -44,7 +46,7 @@ const Login = () => {
                 navigate('/');
             })
             .catch(function (error) {
-                console.log(error)
+                toast(error)
             })
     }
 

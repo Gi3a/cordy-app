@@ -1,14 +1,20 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { useParams, useNavigate } from 'react-router-dom';
 
 import axios from 'axios';
 
 import { useAuth } from "../hooks/use-auth";
+import { unsetUser } from '../../store/features/user/userSlice';
 
 const Profile = () => {
 
     const { user_id } = useParams();
-    const { jwttoken } = useAuth();
+    const { isAuth, jwttoken } = useAuth();
+    const dispatch = useDispatch();
+    let navigate = useNavigate();
+
+
     const [profile, setProfile] = useState({
         login: null,
         name: null,
@@ -24,11 +30,7 @@ const Profile = () => {
     });
 
     useEffect(() => {
-        getProfile();
-    }, [])
-
-    const getProfile = async () => {
-        await axios({
+        axios({
             method: "get",
             headers: {
                 "Content-Type": "application/json",
@@ -37,7 +39,6 @@ const Profile = () => {
             url: `https://cordy-app.herokuapp.com/users/${user_id}`
         })
             .then(function (response) {
-                console.log(response.data)
                 setProfile(prevProfile => ({
                     ...prevProfile,
                     login: response.data.login,
@@ -52,17 +53,22 @@ const Profile = () => {
                     favorites: response.data.favorites,
                     username: response.data.username
                 }));
-                console.log(profile)
             })
             .catch(function (error) {
-                console.log(error)
+                navigate('/error/404');
             })
-    }
+    }, [])
+
 
     return (
         <div className="page">
             <div>GET User Id: {user_id}</div>
             <div>Profile login : {profile.login}</div>
+            {isAuth &&
+                <button onClick={() => dispatch(unsetUser())}>
+                    Log out
+                </button>
+            }
         </div>
     )
 }

@@ -3,6 +3,8 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setUser } from "../../store/features/user/userSlice";
 
+import { toast } from 'react-toastify';
+
 import axios from 'axios';
 
 const Signup = () => {
@@ -41,7 +43,7 @@ const Signup = () => {
                 navigate('/');
             })
             .catch(function (error) {
-                console.log(error)
+                toast(error);
             })
     }
 
