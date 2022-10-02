@@ -9,6 +9,7 @@ import Search from "../../assets/images/icons/search.svg";
 import Pages from "../../assets/images/icons/pages.svg";
 import Home from "../../assets/images/icons/home.svg";
 import Logo from "../../assets/images/icons/logotype.svg";
+import Profile from "../../assets/images/icons/profile.svg";
 
 const Header = () => {
 
@@ -17,13 +18,28 @@ const Header = () => {
 
     return (
         <header>
-            <div>
-                <img src={Logo} alt="Logo" />
-                TiNimal
-            </div>
-            <div>
-
-            </div>
+            <nav>
+                <div>
+                    <Link to="/">
+                        <img src={Logo} alt="Logo" />
+                        TiNimal
+                    </Link>
+                </div>
+                <div>
+                    <Link to="/">
+                        <img src={Profile} alt="Profile" />
+                        Profile
+                    </Link>
+                    <Link to="/">
+                        <img src={Heart} alt="Heart" />
+                        Favourites
+                    </Link>
+                    <Link to="/">
+                        <img src={Pages} alt="Pages" />
+                        Search
+                    </Link>
+                </div>
+            </nav>
         </header>
     )
 }

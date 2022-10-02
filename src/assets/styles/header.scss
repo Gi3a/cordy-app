@@ -1,19 +1,54 @@
 header {
+
     display: flex;
-    flex-direction: row;
+    width: 100%;
 
-    &>div {
+    nav {
         display: flex;
-    }
+        flex-direction: row;
+        justify-content: space-around;
 
-    a {
-        display: flex;
+        width: 100%;
 
-        & svg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+
+
+        &>div {
             display: flex;
         }
-    }
 
+        a {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            transition: 0.35s all;
+            padding: 15px;
+            margin: 5px;
+
+            font-weight: bold;
+
+            color: #777;
+
+            &:hover,
+            &:focus,
+            &:visited {
+                color: #222;
+            }
+
+        }
+
+        & img {
+            display: flex;
+            height: 36px;
+            width: auto;
+
+
+        }
+    }
 
     @media (min-width: 769px) and (max-width: 1024px) {}
 
