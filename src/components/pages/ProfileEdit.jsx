@@ -107,20 +107,35 @@ const ProfileEdit = () => {
                 <h1>Редактирование профиля</h1>
 
                 <div className="form-control">
-                    <label>Логин</label>
+                    <label>Имя</label>
                     <input
                         type="text"
-                        name="username"
-                        {...register("username", {
-                            required: "Проверьте логин",
-                            defaultValue: "hello",
+                        name="name"
+                        {...register("name", {
+                            required: "Проверьте имя",
                             minLength: {
                                 value: 3,
-                                message: "Логин состоит минимум из 3 символов"
+                                message: "Имя состоит минимум из 3 символов"
                             }
                         })}
                     />
-                    {errors.username && <span>{errors.username.message}</span>}
+                    {errors.name && <span>{errors.name.message}</span>}
+                </div>
+
+                <div className="form-control">
+                    <label>Адрес</label>
+                    <input
+                        type="text"
+                        name="address"
+                        {...register("address", {
+                            required: "Проверьте номер телефона",
+                            minLength: {
+                                value: 5,
+                                message: "Адресс состоит минимум из 5 символов"
+                            }
+                        })}
+                    />
+                    {errors.address && <span>{errors.address.message}</span>}
                 </div>
 
                 <div className="form-control">

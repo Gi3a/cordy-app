@@ -8,7 +8,7 @@ import { useAuth } from "../hooks/use-auth";
 const CreateCat = () => {
 
 
-    const { jwttoken } = useAuth();
+    const { id, jwttoken } = useAuth();
 
     const {
         register,
@@ -21,7 +21,7 @@ const CreateCat = () => {
     const onSubmit = async (data) => {
         await axios({
             method: "post",
-            url: "https://cordy-app.herokuapp.com/users/2/cats",
+            url: `https://cordy-app.herokuapp.com/users/${id}/cats`,
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": `Bearer ${jwttoken}`
@@ -107,19 +107,19 @@ const CreateCat = () => {
                 </div>
 
                 <div className="form-control">
-                    <label>Возраст питомца</label>
+                    <label>Стоимость питомца</label>
                     <input
                         type="number"
-                        name="age"
-                        {...register("age", {
-                            required: "Проверьте возраст",
+                        name="price"
+                        {...register("price", {
+                            required: "Проверьте стоимость",
                             minLength: {
                                 value: 1,
                                 message: "Возраст минимум из 1 символов"
                             }
                         })}
                     />
-                    {errors.age && <span>{errors.age.message}</span>}
+                    {errors.price && <span>{errors.price.message}</span>}
                 </div>
 
                 <div className="form-control">
@@ -150,6 +150,34 @@ const CreateCat = () => {
                         {...register("certificates",)}
                     />
                     {errors.certificates && <span>{errors.certificates.message}</span>}
+                </div>
+
+                <div className="form-control">
+                    <label>Описание</label>
+                    <input
+                        type="text"
+                        name="info"
+                        {...register("info", {
+                            required: "Проверьте описание",
+                            minLength: {
+                                value: 2,
+                                message: "Описание состоит минимум из 2 символов"
+                            }
+                        })}
+                    />
+                    {errors.info && <span>{errors.info.message}</span>}
+                </div>
+
+                <div className="form-control">
+                    <label>Фотография питомца</label>
+                    <input
+                        type="file"
+                        name="file"
+                        {...register("file", {
+                            required: "Проверьте фотографию",
+                        })}
+                    />
+                    {errors.file && <span>{errors.file.message}</span>}
                 </div>
 
 

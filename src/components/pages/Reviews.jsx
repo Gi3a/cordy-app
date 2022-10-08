@@ -10,7 +10,7 @@ import { useAuth } from "../hooks/use-auth";
 const Reviews = () => {
 
     const { user_id } = useParams();
-    const { isAuth, jwttoken } = useAuth();
+    const { isAuth, id, jwttoken } = useAuth();
     const [reviews, setReviews] = useState([]);
     const dispatch = useDispatch();
     let navigate = useNavigate();
@@ -34,17 +34,28 @@ const Reviews = () => {
 
     return (
         <div className="page">
-            <h2>Отзывы</h2>
-            {reviews.map(({ id, user_id, date, text, name, avatar, rating }) => {
-                return (
-                    <div className="pet">
-                        <img src={avatar} />
-                        <span>{name}</span>
-                        <p>{text}</p>
-                        <i>{rating}</i>
-                    </div>
-                );
-            })}
+            {reviews.length > 0 ?
+                <>
+                    <h2>Отзывы</h2>
+                    {reviews.map(({ id, user_id, date, text, name, avatar, rating }) => {
+                        return (
+                            <div className="pet" key={id}>
+                                <img src={avatar} />
+                                <span>{name}</span>
+                                <p>{text}</p>
+                                <i>{rating}</i>
+                            </div>
+                        );
+                    })}
+                </>
+                :
+                <h2>Нет отзывов</h2>
+            }
+            {user_id !== id &&
+                <button onClick={() => navigate(`/${user_id}/create_review`)}>
+                    Оставить отзыв
+                </button>
+            }
         </div>
     )
 }

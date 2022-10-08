@@ -117,7 +117,7 @@ const Signup = () => {
                 </div>
 
                 <div className="form-control">
-                    <label>Адресс</label>
+                    <label>Адрес</label>
                     <input
                         type="text"
                         name="address"

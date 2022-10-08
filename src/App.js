@@ -14,6 +14,7 @@ import Pet from './components/pages/Pet';
 import Favorites from './components/pages/Favorites';
 import CreateCat from './components/pages/CreateCat';
 import PetList from './components/pages/PetList';
+import CreateReview from './components/pages/CreateReview';
 import ProfileEdit from './components/pages/ProfileEdit';
 import Error from './components/pages/Error';
 
@@ -41,6 +42,7 @@ function App() {
                         <Route path="/pet/:pet_id" element={<Pet />} />
                         <Route path="/pets/:user_id" element={<PetList />} />
                         <Route path="/profile/edit" element={<ProfileEdit />} />
+                        <Route path="/:user_id/create_review" element={<CreateReview />} />
                     </Route>
 
                     <Route path="*" element={<Error />} />
