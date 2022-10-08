@@ -10,6 +10,9 @@ header {
 
         width: 100%;
 
+        background-color: #ffffff;
+        font-weight: 400;
+
         position: fixed;
         top: 0;
         left: 0;
@@ -26,18 +29,20 @@ header {
             justify-content: center;
             align-items: center;
 
+            font-family: tt commons, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif;
+
+
             transition: 0.35s all;
-            padding: 0 15px;
+            padding: 0 16px;
             margin: 5px;
 
-            font-weight: bold;
 
-            color: #777;
+            color: #1e2532;
 
             &:hover,
             &:focus,
             &:visited {
-                color: #222;
+                color: #10529b;
             }
 
         }

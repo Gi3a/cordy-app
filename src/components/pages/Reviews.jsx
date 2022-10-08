@@ -1,0 +1,54 @@
+import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useParams, useNavigate } from 'react-router-dom';
+
+import axios from 'axios';
+
+import { useAuth } from "../hooks/use-auth";
+
+
+const Reviews = () => {
+
+    const { user_id } = useParams();
+    const { isAuth, jwttoken } = useAuth();
+    const { posts, setPosts } = useState([]);
+    const dispatch = useDispatch();
+    let navigate = useNavigate();
+
+    useEffect(() => {
+        axios({
+            method: "get",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${jwttoken}`
+            },
+            url: `https://cordy-app.herokuapp.com/users/${user_id}/feedbacks`
+        })
+            .then(function (response) {
+                console.log(response.data)
+                setPosts(response.data)
+            })
+            .catch(function (error) {
+                // navigate('/error/404');
+            })
+    }, []);
+
+    return (
+        <div className="page">
+            <h2>Отзывы</h2>
+            {/* {posts.map(({ id, user_id, date, text, name }) => {
+                return (
+                    <div>
+                        id: {id} <br />
+                        user_id: {user_id} <br />
+                        date: {date} <br />
+                        text: {text} <br />
+                        name: {name} <br />
+                    </div>
+                );
+            })} */}
+        </div>
+    )
+}
+
+export default Reviews

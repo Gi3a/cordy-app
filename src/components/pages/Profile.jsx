@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 
 import axios from 'axios';
 
@@ -62,13 +62,26 @@ const Profile = () => {
 
     return (
         <div className="page">
-            <div>GET User Id: {user_id}</div>
-            <div>Profile login : {profile.login}</div>
+            <h2>Профиль</h2>
+            <div className="block">
+                <span>GET User Id: {user_id}</span>
+                <span>Profile login : {profile.login}</span>
+            </div>
             {isAuth &&
                 <button onClick={() => dispatch(unsetUser())}>
                     Log out
                 </button>
             }
+            <div>
+                {profile.cats.map(({ id, address, age, breed, certificates, info, name, passport, photo, price, sex, vaccination }) => {
+                    return (
+                        <Link to={`/pet/${id}`} className="pet" key={id}>
+                            <img src={`${photo}`} />
+                            name: {name} <br />
+                        </Link>
+                    );
+                })}
+            </div>
         </div>
     )
 }

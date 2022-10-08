@@ -9,8 +9,11 @@ import Signup from './components/pages/Signup';
 import Login from './components/pages/Login';
 import Profile from './components/pages/Profile';
 import Search from './components/pages/Search';
+import Reviews from './components/pages/Reviews';
+import Pet from './components/pages/Pet';
 import Favorites from './components/pages/Favorites';
 import CreateCat from './components/pages/CreateCat';
+import PetList from './components/pages/PetList';
 import Error from './components/pages/Error';
 
 import ProtectedRoutes from './components/common/ProtectedRoutes';
@@ -33,6 +36,9 @@ function App() {
                         <Route path="/pet" element={<CreateCat />} />
                         <Route path="/search" element={<Search />} />
                         <Route path="/favorites" element={<Favorites />} />
+                        <Route path="/:user_id/reviews" element={<Reviews />} />
+                        <Route path="/pet/:pet_id" element={<Pet />} />
+                        <Route path="/pets/:user_id" element={<PetList />} />
                     </Route>
 
                     <Route path="*" element={<Error />} />

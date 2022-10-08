@@ -26,6 +26,9 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "resolutions": {
+    "react-devtools-core": "4.14.0"
+  },
   "eslintConfig": {
     "extends": [
       "react-app",

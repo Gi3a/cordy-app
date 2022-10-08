@@ -33,19 +33,21 @@ form {
         }
 
         & input,
-        & select,
-        & button {
+        & select {
             display: flex;
-            padding: 15px;
             background-color: #fff;
 
-            font-size: 20px;
+            padding: 20px 30px;
+            line-height: 1;
+            border-radius: 4px;
+            user-select: none;
 
+            font-weight: 600;
             outline: none;
-            border: 1.5px solid #ccc;
-            border-radius: 10px;
-
-            transition: 0.4s all;
+            border-width: 0;
+            cursor: pointer;
+            border: 1px solid transparent;
+            transition: 0.3s ease-in-out;
 
 
             &:hover,
@@ -56,12 +58,8 @@ form {
 
         }
 
-        & button {
-            justify-content: center;
-            cursor: pointer;
-        }
-
         & span {
+            transition: 0.3s ease-in-out;
             color: red;
         }
     }
