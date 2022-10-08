@@ -11,7 +11,7 @@ const Reviews = () => {
 
     const { user_id } = useParams();
     const { isAuth, jwttoken } = useAuth();
-    const { posts, setPosts } = useState([]);
+    const [reviews, setReviews] = useState([]);
     const dispatch = useDispatch();
     let navigate = useNavigate();
 
@@ -25,8 +25,7 @@ const Reviews = () => {
             url: `https://cordy-app.herokuapp.com/users/${user_id}/feedbacks`
         })
             .then(function (response) {
-                console.log(response.data)
-                setPosts(response.data)
+                setReviews(...reviews, response.data)
             })
             .catch(function (error) {
                 // navigate('/error/404');
@@ -36,17 +35,16 @@ const Reviews = () => {
     return (
         <div className="page">
             <h2>Отзывы</h2>
-            {/* {posts.map(({ id, user_id, date, text, name }) => {
+            {reviews.map(({ id, user_id, date, text, name, avatar, rating }) => {
                 return (
-                    <div>
-                        id: {id} <br />
-                        user_id: {user_id} <br />
-                        date: {date} <br />
-                        text: {text} <br />
-                        name: {name} <br />
+                    <div className="pet">
+                        <img src={avatar} />
+                        <span>{name}</span>
+                        <p>{text}</p>
+                        <i>{rating}</i>
                     </div>
                 );
-            })} */}
+            })}
         </div>
     )
 }

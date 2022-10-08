@@ -34,19 +34,19 @@ const Header = () => {
                         <>
                             <Link to="/search">
                                 <TbSearch />
-                                Search
+                                Поиск
                             </Link>
                             <Link to="/favorites">
                                 <TbHeart />
-                                Favorites
+                                Избранное
                             </Link>
                             <Link to="/pet">
                                 <TbSquarePlus />
-                                Add Pet
+                                Добавить Питомца
                             </Link>
-                            <Link to="/">
+                            <Link to={`/pets/${id}`}>
                                 <MdPets />
-                                My Pets
+                                Мои Питомцы
                             </Link>
                             <Link to={`/${id}`}>
                                 <TbUser />

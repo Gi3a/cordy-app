@@ -68,9 +68,14 @@ const Profile = () => {
                 <span>Profile login : {profile.login}</span>
             </div>
             {isAuth &&
-                <button onClick={() => dispatch(unsetUser())}>
-                    Log out
-                </button>
+                <>
+                    <button onClick={() => navigate("/profile/edit")}>
+                        Редактировать профиль
+                    </button>
+                    <button onClick={() => dispatch(unsetUser())}>
+                        Выйти из аккаунта
+                    </button>
+                </>
             }
             <div>
                 {profile.cats.map(({ id, address, age, breed, certificates, info, name, passport, photo, price, sex, vaccination }) => {

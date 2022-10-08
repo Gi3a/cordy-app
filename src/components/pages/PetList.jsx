@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 
 import axios from 'axios';
 
@@ -13,7 +13,7 @@ const PetList = () => {
     const dispatch = useDispatch();
     let navigate = useNavigate();
 
-    const { pets, setPets } = useState([]);
+    const [pets, setPets] = useState([]);
 
     useEffect(() => {
         axios({
@@ -25,26 +25,27 @@ const PetList = () => {
             url: `https://cordy-app.herokuapp.com/users/${user_id}/cats`
         })
             .then(function (response) {
-                console.log(response.data)
-                setPets(prevPets => [
-                    ...prevPets,
-                    response.data
-                ])
+                setPets(...pets, response.data)
             })
             .catch(function (error) {
-                // navigate('/error/404');
+                navigate('/error/404');
             })
     }, []);
 
     return (
         <div className="page">
-            {/* {pets.map((pet) => {
-                return (
-                    <div>
-                        id: ${pet.id} <br />
-                    </div>
-                );
-            })} */}
+            {pets.length > 0
+                ?
+                pets.map(({ id, name, address, age, breed, certificates, info, passport, photo, price, sex, vaccination }) => {
+                    return (
+                        <Link to={`/pet/${id}`} className="pet" key={id}>
+                            name: {name} <br />
+                        </Link>
+                    );
+                })
+                :
+                <><h2>Нет питомцев</h2></>
+            }
         </div>
     )
 }
