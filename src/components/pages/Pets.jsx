@@ -1,18 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 
 import axios from 'axios';
+import PetList from '../common/Pet/PetsList';
 
-import { useAuth } from "../hooks/use-auth";
+import { useAuth } from "../hooks/useAuth";
 
-const PetList = () => {
+const Pets = () => {
 
     const { user_id } = useParams();
-    const { isAuth, jwttoken } = useAuth();
-    const dispatch = useDispatch();
-    let navigate = useNavigate();
+    const { jwttoken } = useAuth();
 
+    let navigate = useNavigate();
     const [pets, setPets] = useState([]);
 
     useEffect(() => {
@@ -34,20 +33,9 @@ const PetList = () => {
 
     return (
         <div className="page">
-            {pets.length > 0
-                ?
-                pets.map(({ id, name, address, age, breed, certificates, info, passport, photo, price, sex, vaccination }) => {
-                    return (
-                        <Link to={`/pet/${id}`} className="pet" key={id}>
-                            name: {name} <br />
-                        </Link>
-                    );
-                })
-                :
-                <><h2>Нет питомцев</h2></>
-            }
+            <PetList pets={pets} />
         </div>
     )
 }
 
-export default PetList
+export default Pets

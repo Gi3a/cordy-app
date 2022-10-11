@@ -4,13 +4,15 @@ import { useParams, useNavigate, Link } from 'react-router-dom';
 
 import axios from 'axios';
 
-import { useAuth } from "../hooks/use-auth";
+import { useAuth } from "../hooks/useAuth";
 import { unsetUser } from '../../store/features/user/userSlice';
+import PetsList from '../common/Pet/PetsList';
+import UserBar from '../common/User/UserBar';
 
-const Profile = () => {
+const User = () => {
 
     const { user_id } = useParams();
-    const { isAuth, jwttoken } = useAuth();
+    const { id, isAuth, jwttoken } = useAuth();
     const dispatch = useDispatch();
     let navigate = useNavigate();
 
@@ -57,17 +59,16 @@ const Profile = () => {
             .catch(function (error) {
                 navigate('/error/404');
             })
-    }, [])
+    }, [navigate])
 
 
     return (
         <div className="page">
-            <h2>Профиль</h2>
-            <div className="block">
-                <span>GET User Id: {user_id}</span>
-                <span>Profile login : {profile.login}</span>
-            </div>
-            {isAuth &&
+            <UserBar user={profile} />
+            <button onClick={() => navigate(`/${id}/feedbacks`)}>
+                Отзывы
+            </button>
+            {parseInt(user_id) === parseInt(id) &&
                 <>
                     <button onClick={() => navigate("/profile/edit")}>
                         Редактировать профиль
@@ -77,18 +78,9 @@ const Profile = () => {
                     </button>
                 </>
             }
-            <div>
-                {profile.cats.map(({ id, address, age, breed, certificates, info, name, passport, photo, price, sex, vaccination }) => {
-                    return (
-                        <Link to={`/pet/${id}`} className="pet" key={id}>
-                            <img src={`${photo}`} />
-                            name: {name} <br />
-                        </Link>
-                    );
-                })}
-            </div>
+            <PetsList pets={profile.cats} />
         </div>
     )
 }
 
-export default Profile
+export default User

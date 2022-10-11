@@ -7,15 +7,15 @@ import Layout from './components/layouts/Layout';
 import Home from './components/pages/Home';
 import Signup from './components/pages/Signup';
 import Login from './components/pages/Login';
-import Profile from './components/pages/Profile';
+import User from './components/pages/User';
 import Search from './components/pages/Search';
-import Reviews from './components/pages/Reviews';
+import Feedbacks from './components/pages/Feedbacks';
 import Pet from './components/pages/Pet';
 import Favorites from './components/pages/Favorites';
-import CreateCat from './components/pages/CreateCat';
-import PetList from './components/pages/PetList';
-import CreateReview from './components/pages/CreateReview';
-import ProfileEdit from './components/pages/ProfileEdit';
+import PetAdd from './components/pages/PetAdd';
+import Pets from './components/pages/Pets';
+import FeedbackAdd from './components/pages/FeedbackAdd';
+import UserEdit from './components/pages/UserEdit';
 import Error from './components/pages/Error';
 
 import ProtectedRoutes from './components/common/ProtectedRoutes';
@@ -34,15 +34,15 @@ function App() {
 
                     <Route element={<ProtectedRoutes />}>
                         <Route path="/" element={<Home />} />
-                        <Route path="/:user_id" element={<Profile />} />
-                        <Route path="/pet" element={<CreateCat />} />
+                        <Route path="/:user_id" element={<User />} />
+                        <Route path="/pet" element={<PetAdd />} />
                         <Route path="/search" element={<Search />} />
                         <Route path="/favorites" element={<Favorites />} />
-                        <Route path="/:user_id/reviews" element={<Reviews />} />
+                        <Route path="/:user_id/feedbacks" element={<Feedbacks />} />
                         <Route path="/pet/:pet_id" element={<Pet />} />
-                        <Route path="/pets/:user_id" element={<PetList />} />
-                        <Route path="/profile/edit" element={<ProfileEdit />} />
-                        <Route path="/:user_id/create_review" element={<CreateReview />} />
+                        <Route path="/pets/:user_id" element={<Pets />} />
+                        <Route path="/profile/edit" element={<UserEdit />} />
+                        <Route path="/:user_id/feedback_add" element={<FeedbackAdd />} />
                     </Route>
 
                     <Route path="*" element={<Error />} />

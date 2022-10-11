@@ -2,7 +2,7 @@ form {
     display: flex;
     flex-direction: column;
 
-    width: 40%;
+    width: 35%;
     margin: auto;
 
     & h1,
@@ -10,57 +10,76 @@ form {
     & h3 {
         display: flex;
         justify-content: center;
-        font-weight: bold;
 
         padding: 5px;
         margin: 15px 0;
-
+        margin-top: 70px;
     }
 
     .form-control {
         display: flex;
         flex-direction: column;
-        margin: 15px 0;
+        margin: 10px 0;
 
         width: 100%;
-        overflow: hidden;
+        overflow: hidden !important;
+        position: relative;
 
         & label,
         & span {
             display: flex;
-            padding: 5px;
-            font-size: 20px;
+            line-height: 20px;
+            padding: 2px 0;
+            font-size: 14px;
+            color: rgb(130, 139, 162);
         }
 
         & input,
         & select {
             display: flex;
-            background-color: #fff;
+            background-color: rgb(239, 242, 249);
 
-            padding: 20px 30px;
+            padding: 12px 16px;
             line-height: 1;
             border-radius: 4px;
+            overflow: hidden;
             user-select: none;
 
             font-weight: 600;
             outline: none;
+
             border-width: 0;
             cursor: pointer;
             border: 1px solid transparent;
             transition: 0.3s ease-in-out;
 
 
+
             &:hover,
             &:active,
             &:focus {
+
                 border-color: #000;
             }
 
+        }
+
+        & img {
+            border-radius: 4px;
         }
 
         & span {
             transition: 0.3s ease-in-out;
             color: red;
         }
+    }
+
+    .form-bool {
+        flex-direction: row;
+
+        & input[type=checkbox] {
+            width: 10%;
+        }
+
     }
 }

@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+
 import { useParams, useNavigate, Link } from 'react-router-dom';
 
 import axios from 'axios';
 
-import { useAuth } from "../hooks/use-auth";
+import { useAuth } from "../hooks/useAuth";
+import PetBar from '../common/Pet/PetBar';
 
 
 const Pet = () => {
 
     const { pet_id } = useParams();
-    const { isAuth, jwttoken } = useAuth();
-    const dispatch = useDispatch();
+    const { jwttoken } = useAuth();
     let navigate = useNavigate();
 
 
@@ -77,14 +77,7 @@ const Pet = () => {
 
     return (
         <div className="page">
-            <h2>Питомец</h2>
-            <div className="block">
-                GET Cat Id: {pet.id}
-                Pet name : {pet.name}
-            </div>
-            <Link to={`/${pet.owner_id}`} className="pet">
-                Owner name: {pet.owner_name} <br />
-            </Link>
+            <PetBar pet={pet} />
         </div>
     )
 }

@@ -39,6 +39,9 @@ const Signup = () => {
                     address: response.data.address,
                     avatar: response.data.avatar,
                     ranking: response.data.ranking,
+                    feedbacks: response.data.feedbacks,
+                    favorites: response.data.favorites,
+                    cats: response.data.cats
                 }));
                 navigate('/');
             })
@@ -50,7 +53,7 @@ const Signup = () => {
     return (
         <div className="page">
             <form onSubmit={handleSubmit(onSubmit)}>
-                <h1>Регистрация</h1>
+                <h2>Регистрация</h2>
 
                 <div className="form-control">
                     <label>Email</label>

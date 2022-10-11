@@ -10,11 +10,24 @@ import Header from './Header'
 
 const Layout = () => {
     return (
-        <main>
+        <>
             <Header />
-            <Outlet />
-            <ToastContainer />
-        </main>
+            <main>
+                <Outlet />
+            </main>
+            <ToastContainer
+                position="top-center"
+                autoClose={5000}
+                hideProgressBar
+                newestOnTop
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="colored"
+            />
+        </>
     )
 }
 

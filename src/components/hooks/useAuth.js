@@ -10,7 +10,10 @@ export function useAuth() {
         mail,
         address,
         avatar,
-        ranking
+        ranking,
+        feedbacks,
+        favorites,
+        cats
     } = useSelector(state => state.user);
 
     return {
@@ -23,6 +26,9 @@ export function useAuth() {
         mail,
         address,
         avatar,
-        ranking
+        ranking,
+        feedbacks,
+        favorites,
+        cats
     }
 }

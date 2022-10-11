@@ -14,32 +14,3 @@
 
     }
 }
-
-.pet,
-.block {
-    display: flex;
-    flex-direction: column;
-
-    cursor: pointer;
-
-    background-color: #fff;
-    padding: 40px;
-    margin: 15px;
-    border-radius: 4px;
-    transition: 0.2s ease-in-out;
-    border: 1px solid transparent;
-
-    box-shadow: rgb(15 56 113 / 32%) 0px 0px 1px, rgb(15 56 113 / 12%) 0px 1px 2px, rgb(15 56 113 / 8%) 0px 2px 4px;
-
-    &:hover {
-        box-shadow: rgb(15 56 113 / 32%) 0px 0px 1px, rgb(15 56 113 / 8%) 0px 2px 4px -1px, rgb(15 56 113 / 12%) 0px 8px 20px -4px;
-    }
-}
-
-.block {
-    width: 100%;
-}
-
-.pet {
-    width: 50%;
-}

@@ -42,18 +42,30 @@ const Login = () => {
                     address: response.data.address,
                     avatar: response.data.avatar,
                     ranking: response.data.ranking,
+                    feedbacks: response.data.feedbacks,
+                    favorites: response.data.favorites,
+                    cats: response.data.cats
                 }));
                 navigate('/');
             })
             .catch(function (error) {
-                toast(error)
+                toast.warn("Неправильный логин или пароль", {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                });
             })
     }
 
     return (
         <div className="page">
             <form onSubmit={handleSubmit(onSubmit)}>
-                <h1>Вход</h1>
+                <h2>Вход</h2>
 
                 <div className="form-control">
                     <label>Логин</label>
@@ -79,8 +91,8 @@ const Login = () => {
                         {...register("password", {
                             required: "Проверьте пароль",
                             minLength: {
-                                value: 6,
-                                message: "Пароль состоит минимум из 6 символов"
+                                value: 4,
+                                message: "Пароль состоит минимум из 4 символов"
                             }
                         })}
                     />

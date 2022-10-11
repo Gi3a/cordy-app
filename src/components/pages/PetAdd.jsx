@@ -1,14 +1,34 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
-import { useAuth } from "../hooks/use-auth";
+import { useAuth } from "../hooks/useAuth";
 
-const CreateCat = () => {
+
+const PetAdd = () => {
 
 
     const { id, jwttoken } = useAuth();
+
+    let navigate = useNavigate();
+
+    const [image, setImage] = useState();
+    const [preview, setPreview] = useState();
+
+    useEffect(() => {
+        if (image) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setPreview(reader.result)
+            }
+            reader.readAsDataURL(image);
+        } else {
+            setPreview(null);
+        }
+    }, [image]);
 
     const {
         register,
@@ -29,18 +49,36 @@ const CreateCat = () => {
             data: data
         })
             .then(function (response) {
-                console.log(response.data)
-
+                toast.success("Питомец добавлен", {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                });
+                navigate(`/pets/${id}`);
             })
             .catch(function (error) {
-                console.log(error)
+                toast.warn(error.response, {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                });
             })
     }
 
     return (
         <div className="page">
             <form onSubmit={handleSubmit(onSubmit)}>
-                <h1>Добавить питомца</h1>
+                <h2>Добавить питомца</h2>
 
                 <div className="form-control">
                     <label>Имя питомца</label>
@@ -122,7 +160,7 @@ const CreateCat = () => {
                     {errors.price && <span>{errors.price.message}</span>}
                 </div>
 
-                <div className="form-control">
+                <div className="form-control form-bool">
                     <label>Паспорт питомца</label>
                     <input
                         type="checkbox"
@@ -132,7 +170,7 @@ const CreateCat = () => {
                     {errors.passport && <span>{errors.passport.message}</span>}
                 </div>
 
-                <div className="form-control">
+                <div className="form-control form-bool">
                     <label>Вакцинация питомца</label>
                     <input
                         type="checkbox"
@@ -142,7 +180,7 @@ const CreateCat = () => {
                     {errors.vaccination && <span>{errors.vaccination.message}</span>}
                 </div>
 
-                <div className="form-control">
+                <div className="form-control form-bool">
                     <label>Вакцинация питомца</label>
                     <input
                         type="checkbox"
@@ -168,15 +206,25 @@ const CreateCat = () => {
                     {errors.info && <span>{errors.info.message}</span>}
                 </div>
 
-                <div className="form-control">
+                <div className="form-control ">
                     <label>Фотография питомца</label>
+
                     <input
                         type="file"
                         name="file"
-                        {...register("file", {
-                            required: "Проверьте фотографию",
-                        })}
+                        {...register("file"
+                            // , {required: "Проверьте фотографию",}
+                        )}
+                        onChange={(event) => {
+                            const file = event.target.files[0];
+                            if (file && file.type.substr(0, 5) === "image")
+                                setImage(file);
+                            else
+                                setImage(null);
+                        }}
                     />
+                    {preview ? <img src={preview} /> : <></>}
+
                     {errors.file && <span>{errors.file.message}</span>}
                 </div>
 
@@ -191,4 +239,4 @@ const CreateCat = () => {
     )
 }
 
-export default CreateCat
+export default PetAdd

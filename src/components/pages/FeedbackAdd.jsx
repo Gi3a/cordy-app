@@ -1,51 +1,93 @@
-import React, { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux';
+import React, { useState } from 'react'
 import { useForm } from "react-hook-form";
-import { useParams, useNavigate, Link } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import axios from 'axios';
+import { useAuth } from "../hooks/useAuth";
 
-import { useAuth } from "../hooks/use-auth";
 
+const FeedbackAdd = () => {
 
-const CreateReview = () => {
-
+    const { id, jwttoken } = useAuth();
     const { user_id } = useParams();
-    const { isAuth, jwttoken } = useAuth();
-    const dispatch = useDispatch();
     let navigate = useNavigate();
 
     const [rating, setRating] = useState(0);
+
+    const current = new Date();
+    const date = `${current.getFullYear()}-${current.getMonth() + 1}-${current.getDate()}`;
+
+    const preloadedValues = {
+        userId: id,
+        date: date
+    }
 
     const {
         register,
         handleSubmit,
         formState: { errors }
     } = useForm({
-        mode: "onBlur"
+        mode: "onBlur",
+        defaultValues: preloadedValues
     });
 
+
     const onSubmit = async (data) => {
+
         await axios({
             method: "post",
             url: `https://cordy-app.herokuapp.com/users/${user_id}/feedbacks`,
-            headers: { "Content-Type": "application/json" },
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${jwttoken}`
+            },
             data: data
         })
             .then(function (response) {
                 console.log(response.data)
-
+                toast.success("Отзыв добавлен", {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                });
+                navigate(`/${user_id}/reviews`);
             })
             .catch(function (error) {
-                toast(error)
+                toast.warn(error.response, {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                });
             })
     }
 
     return (
         <div className="page">
             <form onSubmit={handleSubmit(onSubmit)}>
-                <h1>Добавить отзыв</h1>
+                <h2>Добавить отзыв</h2>
+
+                <input
+                    type="hidden"
+                    name="userId"
+                    {...register("userId", {})}
+                />
+
+                <input
+                    type="hidden"
+                    name="date"
+                    {...register("date", {})}
+                />
 
                 <div className="form-control">
                     <label>Текст</label>
@@ -91,4 +133,4 @@ const CreateReview = () => {
     )
 }
 
-export default CreateReview
+export default FeedbackAdd
