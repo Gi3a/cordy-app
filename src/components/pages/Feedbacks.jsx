@@ -6,6 +6,7 @@ import axios from 'axios';
 import { useAuth } from "../hooks/useAuth";
 
 import FeedbackList from "../common/Feedback/FeedbackList";
+import Button from '../ui/Button/Button';
 
 const Feedbacks = () => {
 
@@ -34,10 +35,8 @@ const Feedbacks = () => {
     return (
         <div className="page">
             <FeedbackList feedbacks={feedbacks} />
-            {user_id !== id &&
-                <button onClick={() => navigate(`/${user_id}/feedback_add`)}>
-                    Оставить отзыв
-                </button>
+            {parseInt(user_id) !== parseInt(id) &&
+                <Button text="Оставить отзыв" onClick={() => navigate(`/${user_id}/feedback_add`)} />
             }
         </div>
     )

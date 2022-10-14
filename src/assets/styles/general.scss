@@ -3,7 +3,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-@import "form.scss", "page.scss", "error.scss", "header.scss";
+@import "form.scss", "error.scss", "header.scss";
 
 * {
     margin: 0;
@@ -12,41 +12,37 @@
     // font-family: 'Open Sans', sans-serif;
     // font-family: 'Roboto', sans-serif;
     // font-family: "Poppins", sans-serif;
-    font-family: "Montserrat", sans-serif;
+    // font-family: "Montserrat", sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Roboto", "Open Sans", "Helvetica Neue", "Noto Sans Armenian", "Noto Sans Bengali", "Noto Sans Cherokee", "Noto Sans Devanagari", "Noto Sans Ethiopic", "Noto Sans Georgian", "Noto Sans Hebrew", "Noto Sans Kannada", "Noto Sans Khmer", "Noto Sans Lao", "Noto Sans Osmanya", "Noto Sans Tamil", "Noto Sans Telugu", "Noto Sans Thai", sans-serif;
     font-weight: 500;
+}
+
+* svg {
+    margin-right: 3px;
+}
+
+.page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    flex-wrap: wrap;
+
+    min-height: 100vh;
+    margin-top: 66px;
+    background-color: #c2d5e0;
+
+    &>* {
+        max-width: 80%;
+
+    }
 }
 
 
 a {
     text-decoration: none;
 }
-
-.page button {
-    padding: 20px 30px;
-    background-color: #1a91f0;
-    line-height: 1;
-    color: #ffffff;
-    border-radius: 4px;
-    user-select: none;
-
-    font-weight: 600;
-    outline: none;
-    border-width: 0;
-    cursor: pointer;
-
-    transition: background-color .1s, color .1s, box-shadow .1s, -webkit-box-shadow .1s;
-
-    font-size: 14px;
-    margin: 10px auto;
-
-
-    width: 250px;
-
-    &:hover {
-        background-color: #1170cd;
-    }
-}
-
 
 h1,
 h2,

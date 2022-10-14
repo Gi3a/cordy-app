@@ -29,7 +29,7 @@ const Pets = () => {
             .catch(function (error) {
                 navigate('/error/404');
             })
-    }, []);
+    }, [navigate]);
 
     return (
         <div className="page">

@@ -7,13 +7,14 @@ import { setUser } from "../../store/features/user/userSlice";
 import axios from 'axios';
 
 import { useAuth } from "../hooks/useAuth";
+import Button from '../ui/Button/Button';
 
 const UserEdit = () => {
-    const { id, jwttoken, name, phoneNumber, mail, address, avatar } = useAuth();
+    const { id, jwttoken, avatar } = useAuth();
     const dispatch = useDispatch();
 
 
-    const [image, setImage] = useState(avatar);
+    const [image, setImage] = useState(null);
     const [preview, setPreview] = useState(avatar);
     useEffect(() => {
         if (image) {
@@ -27,26 +28,57 @@ const UserEdit = () => {
         }
     }, [image]);
 
-    const [profile, setProfile] = useState({
-        name: name,
-        phoneNumber: phoneNumber,
-        mail: mail,
-        address: address,
-        avatar: avatar
-    });
-
     const {
         register,
         handleSubmit,
         formState: { errors }
     } = useForm({
         mode: "onBlur",
-        defaultValues: profile
+        defaultValues: useAuth()
     });
 
+    const onImageUpdate = async (event) => {
+        setImage(event.target.files[0]);
+        const fd = new FormData();
+        fd.append("file", image, image.name);
+
+
+        await axios({
+            method: "post",
+            url: `https://cordy-app.herokuapp.com/users/${id}/avatar`,
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${jwttoken}`
+            },
+            data: fd
+        })
+            .then(function (response) {
+                toast.success("Фотография добавлена", {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                });
+            })
+            .catch(function (error) {
+                toast.warn(error.response, {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                });
+            })
+    }
 
     const onSubmit = async (data) => {
-        console.log(data);
         await axios({
             method: "put",
             url: `https://cordy-app.herokuapp.com/users/${id}`,
@@ -174,23 +206,15 @@ const UserEdit = () => {
                     name="avatar"
                     accept="image/*"
                     {...register("avatar")}
-                    onChange={(event) => {
-                        const file = event.target.files[0];
-                        if (file && file.type.substr(0, 5) === "image")
-                            setImage(file);
-                        else
-                            setImage(null);
-                    }}
+                    onChange={onImageUpdate}
                 />
-                {preview ? <img src={preview} /> : <></>}
+                {preview ? <img src={preview} alt="preview" /> : <></>}
 
                 {errors.avatar && <span>{errors.avatar.message}</span>}
             </div>
 
             <div className="form-control">
-                <button type="submit">
-                    Сохранить
-                </button>
+                <Button type="submit" text="Сохранить" />
             </div>
         </form >
     </div>

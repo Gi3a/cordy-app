@@ -1,9 +1,17 @@
 import React from "react";
-import { Link } from 'react-router-dom';
+
+import { useAuth } from "../../hooks/useAuth";
+
 import styles from "./Pet.module.scss";
 import PetItem from "./PetItem";
 
 const PetList = ({ pets }) => {
+
+    const { id, jwttoken, cats, favorites } = useAuth();
+
+    const owner_id = id;
+    const owner_token = jwttoken;
+
     return (
         <div className={styles.pet_list}>
             {pets.length > 0 ?
@@ -25,6 +33,18 @@ const PetList = ({ pets }) => {
                                 price={price}
                                 sex={sex}
                                 vaccination={vaccination}
+                                liked={
+                                    favorites.find(obj => {
+                                        return parseInt(obj.id) === parseInt(id);
+                                    })
+                                }
+                                belong={
+                                    cats.find(obj => {
+                                        return parseInt(obj.id) === parseInt(id);
+                                    })
+                                }
+                                owner_id={owner_id}
+                                owner_token={owner_token}
                             />
                         );
                     })}

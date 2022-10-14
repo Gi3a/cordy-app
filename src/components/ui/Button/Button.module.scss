@@ -1,0 +1,25 @@
+.button {
+    padding: 20px 30px;
+    background-color: #1a91f0;
+    line-height: 1;
+    color: #ffffff;
+    border-radius: 4px;
+    user-select: none;
+
+    font-weight: 600;
+    outline: none;
+    border-width: 0;
+    cursor: pointer;
+
+    transition: background-color .1s, color .1s, box-shadow .1s, -webkit-box-shadow .1s;
+
+    font-size: 14px;
+    margin: 10px auto;
+
+
+    width: 250px;
+
+    &:hover {
+        background-color: #1170cd;
+    }
+}

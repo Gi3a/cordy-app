@@ -36,4 +36,49 @@
 
 .user_bar {
     display: flex;
+    flex-direction: row;
+
+    justify-content: space-around;
+
+    background-color: #fff;
+    padding: 40px;
+    margin: 15px;
+    border-radius: 4px;
+    transition: 0.2s ease-in-out;
+    border: 1px solid transparent;
+
+    width: 100%;
+
+    & .user_avatar {
+        display: flex;
+        flex-direction: column;
+        width: 30%;
+
+        & img {
+            width: 100%;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        & button {
+            width: 100%;
+        }
+    }
+
+    & .user_description {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 60%;
+
+        & span {
+            display: flex;
+            padding: 7px;
+
+            & b {
+                font-weight: bold;
+                margin-right: 5px;
+            }
+        }
+    }
 }

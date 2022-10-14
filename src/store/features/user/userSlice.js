@@ -9,7 +9,10 @@ const initialState = {
     mail: null,
     address: null,
     avatar: null,
-    ranking: null
+    ranking: null,
+    cats: [],
+    favorites: [],
+    feedbacks: []
 };
 
 const userSlice = createSlice({
@@ -26,6 +29,15 @@ const userSlice = createSlice({
             state.address = action.payload.address;
             state.avatar = action.payload.avatar;
             state.ranking = action.payload.ranking;
+            state.cats = action.payload.cats;
+            state.favorites = action.payload.favorites;
+            state.feedbacks = action.payload.feedbacks;
+        },
+        setCats(state, action) {
+            state.cats = action.payload.cats;
+        },
+        setFavorites(state, action) {
+            state.favorites = action.payload.favorites;
         },
         unsetUser(state) {
             state.jwttoken = null;
@@ -35,10 +47,14 @@ const userSlice = createSlice({
             state.phoneNumber = null;
             state.mail = null;
             state.address = null;
+            state.ranking = null;
+            state.cats = null;
+            state.favorites = null;
+            state.feedbacks = null;
         }
     },
 });
 
-export const { setUser, unsetUser } = userSlice.actions;
+export const { setUser, unsetUser, setCats, setFavorites } = userSlice.actions;
 
 export default userSlice.reducer;

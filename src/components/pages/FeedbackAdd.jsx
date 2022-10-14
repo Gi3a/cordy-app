@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 
 import axios from 'axios';
 import { useAuth } from "../hooks/useAuth";
+import Button from '../ui/Button/Button';
 
 
 const FeedbackAdd = () => {
@@ -56,7 +57,7 @@ const FeedbackAdd = () => {
                     progress: undefined,
                     theme: "colored",
                 });
-                navigate(`/${user_id}/reviews`);
+                navigate(`/${user_id}/feedbacks`);
             })
             .catch(function (error) {
                 toast.warn(error.response, {
@@ -124,9 +125,7 @@ const FeedbackAdd = () => {
 
 
                 <div className="form-control">
-                    <button type="submit">
-                        Отправить
-                    </button>
+                    <Button type="submit" text="Отправить" />
                 </div>
             </form >
         </div>

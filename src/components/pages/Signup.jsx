@@ -6,6 +6,7 @@ import { setUser } from "../../store/features/user/userSlice";
 import { toast } from 'react-toastify';
 
 import axios from 'axios';
+import Button from "../ui/Button/Button";
 
 const Signup = () => {
 
@@ -28,7 +29,6 @@ const Signup = () => {
             data: data
         })
             .then(function (response) {
-                console.log(response.data);
                 dispatch(setUser({
                     jwttoken: response.data.jwttoken,
                     id: response.data.id,
@@ -152,9 +152,7 @@ const Signup = () => {
                 </div>
 
                 <div className="form-control">
-                    <button type="submit">
-                        Зарегестрироваться
-                    </button>
+                    <Button type="submit" text="Зарегестрироваться" />
                 </div>
             </form >
         </div>

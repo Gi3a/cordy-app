@@ -1,8 +1,7 @@
 .feedback_item {
     display: flex;
-    flex-direction: column;
-
-    cursor: pointer;
+    flex-direction: row;
+    justify-content: space-between;
 
     background-color: #fff;
     padding: 40px;
@@ -17,6 +16,45 @@
 
     &:hover {
         box-shadow: rgb(15 56 113 / 32%) 0px 0px 1px, rgb(15 56 113 / 8%) 0px 2px 4px -1px, rgb(15 56 113 / 12%) 0px 8px 20px -4px;
+    }
+
+    .feedback_item_avatar {
+        display: flex;
+        flex-direction: column;
+        width: 30%;
+
+        & img {
+            width: 100%;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+    }
+
+    .feedback_item_description {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 60%;
+
+        .feedback_item_rating {
+            display: flex;
+            flex-direction: row;
+
+            & svg {
+                color: #ffba00;
+            }
+        }
+
+
+        & span {
+            display: flex;
+            padding: 7px;
+
+            & b {
+                font-weight: bold;
+                margin-right: 5px;
+            }
+        }
     }
 }
 

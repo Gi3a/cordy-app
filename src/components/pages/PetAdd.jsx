@@ -6,13 +6,16 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 
 import { useAuth } from "../hooks/useAuth";
-
+import Button from '../ui/Button/Button';
+import { useDispatch } from 'react-redux';
+import { setCats } from "../../store/features/user/userSlice"
 
 const PetAdd = () => {
 
 
-    const { id, jwttoken } = useAuth();
+    const { id, jwttoken, cats } = useAuth();
 
+    const dispatch = useDispatch();
     let navigate = useNavigate();
 
     const [image, setImage] = useState();
@@ -38,6 +41,47 @@ const PetAdd = () => {
         mode: "onBlur"
     });
 
+    const onImageUpdate = async (cat_id) => {
+
+        const fd = new FormData();
+        fd.append("file", image, image.name);
+
+        await axios({
+            method: "post",
+            url: `https://cordy-app.herokuapp.com/cats/${cat_id}/photo`,
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${jwttoken}`
+            },
+            data: fd
+        })
+            .then(function (response) {
+                toast.success("Фотография добавлена", {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                });
+                // navigate(`/pets/${id}`);
+            })
+            .catch(function (error) {
+                toast.warn(error.response, {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                });
+            })
+    }
+
     const onSubmit = async (data) => {
         await axios({
             method: "post",
@@ -59,7 +103,8 @@ const PetAdd = () => {
                     progress: undefined,
                     theme: "colored",
                 });
-                navigate(`/pets/${id}`);
+                const cat_id = response.data.id;
+                onImageUpdate(cat_id);
             })
             .catch(function (error) {
                 toast.warn(error.response, {
@@ -213,7 +258,7 @@ const PetAdd = () => {
                         type="file"
                         name="file"
                         {...register("file"
-                            // , {required: "Проверьте фотографию",}
+                            , { required: "Проверьте фотографию", }
                         )}
                         onChange={(event) => {
                             const file = event.target.files[0];
@@ -223,16 +268,14 @@ const PetAdd = () => {
                                 setImage(null);
                         }}
                     />
-                    {preview ? <img src={preview} /> : <></>}
+                    {preview ? <img src={preview} alt="preview" /> : <></>}
 
                     {errors.file && <span>{errors.file.message}</span>}
                 </div>
 
 
                 <div className="form-control">
-                    <button type="submit">
-                        Добавить Питомца
-                    </button>
+                    <Button type="submit" text="Добавить питомца" />
                 </div>
             </form >
         </div>

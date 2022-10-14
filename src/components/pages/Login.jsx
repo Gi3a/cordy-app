@@ -7,13 +7,12 @@ import { toast } from 'react-toastify';
 import { setUser } from "../../store/features/user/userSlice";
 
 import axios from 'axios';
+import Button from "../ui/Button/Button";
 
 const Login = () => {
 
     const dispatch = useDispatch();
     let navigate = useNavigate();
-
-
 
     const {
         register,
@@ -31,7 +30,6 @@ const Login = () => {
             data: data
         })
             .then(function (response) {
-                console.log(response.data)
                 dispatch(setUser({
                     jwttoken: response.data.jwttoken,
                     id: response.data.id,
@@ -49,7 +47,7 @@ const Login = () => {
                 navigate('/');
             })
             .catch(function (error) {
-                toast.warn("Неправильный логин или пароль", {
+                toast.warn(`Неправильный логин или пароль ${error}`, {
                     position: "top-center",
                     autoClose: 5000,
                     hideProgressBar: true,
@@ -100,9 +98,7 @@ const Login = () => {
                 </div>
 
                 <div className="form-control">
-                    <button type="submit">
-                        Войти
-                    </button>
+                    <Button type="submit" text="Войти" />
                 </div>
             </form >
         </div>

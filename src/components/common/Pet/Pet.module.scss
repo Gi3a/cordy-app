@@ -1,8 +1,116 @@
 .pet_item {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-between;
 
-    cursor: pointer;
+    position: relative;
+
+    background-color: #fff;
+    border-radius: 4px;
+    overflow: hidden;
+    transition: 0.2s ease-in-out;
+
+    // width: 30%;
+    margin: 15px 0;
+    width: 550px;
+    min-height: 250px;
+
+    box-shadow: rgb(15 56 113 / 32%) 0px 0px 1px, rgb(15 56 113 / 12%) 0px 1px 2px, rgb(15 56 113 / 8%) 0px 2px 4px;
+
+    &:hover {
+        box-shadow: rgb(15 56 113 / 32%) 0px 0px 1px, rgb(15 56 113 / 8%) 0px 2px 4px -1px, rgb(15 56 113 / 12%) 0px 8px 20px -4px;
+    }
+
+    .pet_like,
+    .pet_delete {
+        position: absolute;
+        right: 60px;
+        top: 15px;
+        padding: 15px;
+        cursor: pointer;
+
+
+        & svg {
+            color: black;
+            transition: 0.2s ease-in-out;
+        }
+
+        &:hover {
+            & svg {
+                color: red;
+                fill: red;
+            }
+        }
+    }
+
+    .pet_delete {
+        right: 15px;
+    }
+
+    & a {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        height: 100%;
+
+        & .pet_item_avatar {
+            display: flex;
+            position: relative;
+            overflow: hidden;
+            width: 50%;
+
+            & img {
+                object-fit: cover;
+                position: absolute;
+                left: 0;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                width: 100%;
+                height: 100%;
+            }
+
+
+        }
+
+        & .pet_item_description {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            width: 45%;
+
+            & span {
+                display: flex;
+                align-items: center;
+                padding: 7px 15px;
+                color: #1e2532;
+                font-size: 14px;
+            }
+        }
+    }
+}
+
+.pet_list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+
+    padding: 40px;
+
+    & h2 {
+        display: flex;
+        justify-content: center;
+        margin-top: 50px;
+        width: 100%;
+    }
+}
+
+.pet_bar {
+    display: flex;
+    flex-direction: row;
+
+    justify-content: space-around;
 
     background-color: #fff;
     padding: 40px;
@@ -11,25 +119,38 @@
     transition: 0.2s ease-in-out;
     border: 1px solid transparent;
 
-    width: 20%;
+    width: 100%;
 
-    box-shadow: rgb(15 56 113 / 32%) 0px 0px 1px, rgb(15 56 113 / 12%) 0px 1px 2px, rgb(15 56 113 / 8%) 0px 2px 4px;
-
-    &:hover {
-        box-shadow: rgb(15 56 113 / 32%) 0px 0px 1px, rgb(15 56 113 / 8%) 0px 2px 4px -1px, rgb(15 56 113 / 12%) 0px 8px 20px -4px;
-    }
-}
-
-.pet_list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    width: 90%;
-
-    & h2 {
+    & .pet_photo {
         display: flex;
+        flex-direction: column;
+        width: 30%;
+
+        & img {
+            width: 100%;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        & button {
+            width: 100%;
+        }
+    }
+
+    & .pet_description {
+        display: flex;
+        flex-direction: column;
         justify-content: center;
-        margin-top: 50px;
-        width: 100%;
+        width: 60%;
+
+        & span {
+            display: flex;
+            padding: 7px;
+
+            & b {
+                font-weight: bold;
+                margin-right: 5px;
+            }
+        }
     }
 }

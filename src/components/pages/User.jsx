@@ -1,23 +1,21 @@
 import React, { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux';
-import { useParams, useNavigate, Link } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 import axios from 'axios';
 
 import { useAuth } from "../hooks/useAuth";
-import { unsetUser } from '../../store/features/user/userSlice';
 import PetsList from '../common/Pet/PetsList';
 import UserBar from '../common/User/UserBar';
 
 const User = () => {
 
     const { user_id } = useParams();
-    const { id, isAuth, jwttoken } = useAuth();
-    const dispatch = useDispatch();
+    const { id, jwttoken } = useAuth();
     let navigate = useNavigate();
-
+    const my_profile = parseInt(user_id) === parseInt(id);
 
     const [profile, setProfile] = useState({
+        id: null,
         login: null,
         name: null,
         phoneNumber: null,
@@ -43,6 +41,7 @@ const User = () => {
             .then(function (response) {
                 setProfile(prevProfile => ({
                     ...prevProfile,
+                    id: response.data.id,
                     login: response.data.login,
                     name: response.data.name,
                     phoneNumber: response.data.phoneNumber,
@@ -64,20 +63,7 @@ const User = () => {
 
     return (
         <div className="page">
-            <UserBar user={profile} />
-            <button onClick={() => navigate(`/${id}/feedbacks`)}>
-                Отзывы
-            </button>
-            {parseInt(user_id) === parseInt(id) &&
-                <>
-                    <button onClick={() => navigate("/profile/edit")}>
-                        Редактировать профиль
-                    </button>
-                    <button onClick={() => dispatch(unsetUser())}>
-                        Выйти из аккаунта
-                    </button>
-                </>
-            }
+            <UserBar user={profile} my_profile={my_profile} />
             <PetsList pets={profile.cats} />
         </div>
     )
