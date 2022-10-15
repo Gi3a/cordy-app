@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Link } from 'react-router-dom';
 
 import axios from 'axios';
@@ -23,53 +23,11 @@ const PetItem = ({
     price,
     sex,
     vaccination,
-    belong,
     owner_id,
     owner_token
 }) => {
 
     let navigate = useNavigate();
-
-    useEffect(() => {
-
-    }, [navigate])
-
-    const handleDelete = async () => {
-
-        await axios({
-            method: "delete",
-            url: `https://cordy-app.herokuapp.com/users/${owner_id}/cats/${id}`,
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${owner_token}`
-            }
-        })
-            .then(function (response) {
-                toast.success("Питомец удален", {
-                    position: "top-center",
-                    autoClose: 5000,
-                    hideProgressBar: true,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "colored",
-                });
-                navigate(`/pets/${owner_id}`);
-            })
-            .catch(function (error) {
-                toast.warn(error.response, {
-                    position: "top-center",
-                    autoClose: 5000,
-                    hideProgressBar: true,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "colored",
-                });
-            })
-    }
 
     return (
         <div className={styles.pet_item}>
@@ -84,36 +42,6 @@ const PetItem = ({
                     <span><MdLocationPin />{address}</span>
                 </div>
             </Link>
-            {/* <span
-                className={styles.pet_like}
-                onClick={handleFavourite}
-                title="🧡 Like"
-            >
-                {liked ?
-                    <FaHeart color="red" />
-                    :
-                    <FaRegHeart />
-                }
-            </span> */}
-
-            {belong &&
-                <>
-                    <span
-                        className={styles.pet_edit}
-                        onClick={() => navigate(`/pets/${id}/edit`)}
-                        title="✏️ Edit"
-                    >
-                        <FaRegEdit />
-                    </span>
-                    <span
-                        className={styles.pet_delete}
-                        onClick={handleDelete}
-                        title="🗑️ Delete"
-                    >
-                        <FaTimes />
-                    </span>
-                </>
-            }
         </div>
     )
 }

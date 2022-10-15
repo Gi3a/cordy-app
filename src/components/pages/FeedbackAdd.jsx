@@ -2,7 +2,9 @@ import React, { useState } from 'react'
 import { useForm } from "react-hook-form";
 import { useParams, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { useDispatch } from "react-redux";
 
+import { setLoad } from "../../store/features/load/loadSlice";
 import axios from 'axios';
 import { useAuth } from "../hooks/useAuth";
 import Button from '../ui/Button/Button';
@@ -13,6 +15,7 @@ const FeedbackAdd = () => {
     const { id, jwttoken } = useAuth();
     const { user_id } = useParams();
     let navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const [rating, setRating] = useState(0);
 
@@ -22,6 +25,10 @@ const FeedbackAdd = () => {
     const preloadedValues = {
         userId: id,
         date: date
+    }
+
+    const handleLoading = () => {
+        dispatch(setLoad());
     }
 
     const {
@@ -35,7 +42,7 @@ const FeedbackAdd = () => {
 
 
     const onSubmit = async (data) => {
-
+        handleLoading();
         await axios({
             method: "post",
             url: `https://cordy-app.herokuapp.com/users/${user_id}/feedbacks`,
@@ -57,9 +64,11 @@ const FeedbackAdd = () => {
                     progress: undefined,
                     theme: "colored",
                 });
+                handleLoading();
                 navigate(`/${user_id}/feedbacks`);
             })
             .catch(function (error) {
+                handleLoading();
                 toast.warn(error.response, {
                     position: "top-center",
                     autoClose: 5000,

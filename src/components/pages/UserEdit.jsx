@@ -2,7 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { useForm } from "react-hook-form";
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
+import { useNavigate } from "react-router-dom";
+
 import { setUser } from "../../store/features/user/userSlice";
+import { setLoad } from "../../store/features/load/loadSlice";
 
 import axios from 'axios';
 
@@ -11,7 +14,13 @@ import Button from '../ui/Button/Button';
 
 const UserEdit = () => {
     const { id, jwttoken, avatar } = useAuth();
+    let navigate = useNavigate();
+
     const dispatch = useDispatch();
+
+    const handleLoading = () => {
+        dispatch(setLoad());
+    }
 
 
     const [image, setImage] = useState(null);
@@ -38,9 +47,9 @@ const UserEdit = () => {
     });
 
     const onImageUpdate = async (event) => {
-        setImage(event.target.files[0]);
         const fd = new FormData();
-        fd.append("file", image, image.name);
+        if (image)
+            fd.append("file", image, image.name);
 
 
         await axios({
@@ -53,6 +62,7 @@ const UserEdit = () => {
             data: fd
         })
             .then(function (response) {
+
                 toast.success("Фотография добавлена", {
                     position: "top-center",
                     autoClose: 5000,
@@ -63,6 +73,7 @@ const UserEdit = () => {
                     progress: undefined,
                     theme: "colored",
                 });
+                navigate(`/${id}`);
             })
             .catch(function (error) {
                 toast.warn(error.response, {
@@ -79,6 +90,7 @@ const UserEdit = () => {
     }
 
     const onSubmit = async (data) => {
+        handleLoading();
         await axios({
             method: "put",
             url: `https://cordy-app.herokuapp.com/users/${id}`,
@@ -113,6 +125,11 @@ const UserEdit = () => {
                     progress: undefined,
                     theme: "colored",
                 });
+                if (image)
+                    onImageUpdate();
+                else
+                    navigate(`/${id}`);
+                handleLoading();
             })
             .catch(function (error) {
                 toast.warn(error.response, {
@@ -125,6 +142,7 @@ const UserEdit = () => {
                     progress: undefined,
                     theme: "colored",
                 });
+                handleLoading();
             })
     };
 
@@ -205,8 +223,15 @@ const UserEdit = () => {
                     type="file"
                     name="avatar"
                     accept="image/*"
-                    {...register("avatar")}
-                    onChange={onImageUpdate}
+                    // onChange={onImageUpdate}
+                    onChange={(event) => {
+                        const file = event.target.files[0];
+                        if (file && file.type.substr(0, 5) === "image") {
+                            setImage(file);
+                        }
+                        else
+                            setImage(null);
+                    }}
                 />
                 {preview ? <img src={preview} alt="preview" /> : <></>}
 

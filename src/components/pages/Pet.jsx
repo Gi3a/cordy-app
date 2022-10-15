@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch } from "react-redux";
 
 import { useParams, useNavigate, Link } from 'react-router-dom';
 
@@ -6,13 +7,19 @@ import axios from 'axios';
 
 import { useAuth } from "../hooks/useAuth";
 import PetBar from '../common/Pet/PetBar';
-
+import { setLoad } from "../../store/features/load/loadSlice";
 
 const Pet = () => {
 
     const { pet_id } = useParams();
-    const { jwttoken } = useAuth();
+    const { id, jwttoken } = useAuth();
+
     let navigate = useNavigate();
+    const dispatch = useDispatch();
+
+    const handleLoading = () => {
+        dispatch(setLoad());
+    }
 
 
     const [pet, setPet] = useState({
@@ -34,10 +41,13 @@ const Pet = () => {
         owner_address: null,
         owner_ranking: null,
         owner_name: null,
-        count_feedback: null
+        count_feedback: null,
+        owner_avatar: null,
+        liked: null
     });
 
     useEffect(() => {
+        handleLoading();
         axios({
             method: "get",
             headers: {
@@ -68,16 +78,20 @@ const Pet = () => {
                     owner_ranking: response.data.owner_ranking,
                     owner_name: response.data.owner_name,
                     count_feedback: response.data.count_feedback,
+                    owner_avatar: response.data.owner_avatar,
+                    liked: response.data.liked
                 }));
+                handleLoading();
             })
             .catch(function (error) {
+                handleLoading();
                 navigate('/error/404');
             })
     }, []);
 
     return (
         <div className="page">
-            <PetBar pet={pet} />
+            <PetBar pet={pet} my_id={id} my_token={jwttoken} />
         </div>
     )
 }

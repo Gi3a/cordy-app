@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom';
+import { useDispatch } from "react-redux";
 
 import axios from 'axios';
 
 import { useAuth } from "../hooks/useAuth";
+import { setLoad } from "../../store/features/load/loadSlice";
+
 import PetsList from '../common/Pet/PetsList';
 import UserBar from '../common/User/UserBar';
 
@@ -11,8 +14,14 @@ const User = () => {
 
     const { user_id } = useParams();
     const { id, jwttoken } = useAuth();
+    const dispatch = useDispatch();
     let navigate = useNavigate();
+
     const my_profile = parseInt(user_id) === parseInt(id);
+
+    const handleLoading = () => {
+        dispatch(setLoad());
+    }
 
     const [profile, setProfile] = useState({
         id: null,
@@ -30,6 +39,7 @@ const User = () => {
     });
 
     useEffect(() => {
+        handleLoading();
         axios({
             method: "get",
             headers: {
@@ -54,9 +64,11 @@ const User = () => {
                     favorites: response.data.favorites,
                     username: response.data.username
                 }));
+                handleLoading();
             })
             .catch(function (error) {
                 navigate('/error/404');
+                handleLoading();
             })
     }, [navigate])
 

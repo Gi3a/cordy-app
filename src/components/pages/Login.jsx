@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
 
 import { setUser } from "../../store/features/user/userSlice";
+import { setLoad } from "../../store/features/load/loadSlice";
 
 import axios from 'axios';
 import Button from "../ui/Button/Button";
@@ -22,7 +23,12 @@ const Login = () => {
         mode: "onBlur"
     });
 
+    const handleLoading = () => {
+        dispatch(setLoad());
+    }
+
     const onSubmit = async (data) => {
+        handleLoading();
         await axios({
             method: "post",
             url: "https://cordy-app.herokuapp.com/authenticate",
@@ -44,6 +50,7 @@ const Login = () => {
                     favorites: response.data.favorites,
                     cats: response.data.cats
                 }));
+                handleLoading();
                 navigate('/');
             })
             .catch(function (error) {
@@ -57,6 +64,7 @@ const Login = () => {
                     progress: undefined,
                     theme: "colored",
                 });
+                handleLoading();
             })
     }
 

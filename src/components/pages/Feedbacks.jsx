@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { useDispatch } from "react-redux";
 
 import axios from 'axios';
 
 import { useAuth } from "../hooks/useAuth";
+import { setLoad } from "../../store/features/load/loadSlice";
 
 import FeedbackList from "../common/Feedback/FeedbackList";
 import Button from '../ui/Button/Button';
@@ -14,8 +16,14 @@ const Feedbacks = () => {
     const { id, jwttoken } = useAuth();
     const [feedbacks, setFeedbacks] = useState([]);
     let navigate = useNavigate();
+    const dispatch = useDispatch();
+
+    const handleLoading = () => {
+        dispatch(setLoad());
+    }
 
     useEffect(() => {
+        handleLoading();
         axios({
             method: "get",
             headers: {
@@ -25,9 +33,11 @@ const Feedbacks = () => {
             url: `https://cordy-app.herokuapp.com/users/${user_id}/feedbacks`
         })
             .then(function (response) {
-                setFeedbacks(...feedbacks, response.data)
+                setFeedbacks(...feedbacks, response.data);
+                handleLoading();
             })
             .catch(function (error) {
+                handleLoading();
                 navigate('/error/404');
             })
     }, []);

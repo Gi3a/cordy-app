@@ -6,24 +6,82 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 
 import { useAuth } from "../hooks/useAuth";
+import { setLoad } from "../../store/features/load/loadSlice";
+
 import Button from '../ui/Button/Button';
 import { useDispatch } from 'react-redux';
 
 const PetEdit = () => {
 
     const { pet_id } = useParams();
-    const { id, jwttoken, cats } = useAuth();
+    const { id, jwttoken } = useAuth();
 
 
     const dispatch = useDispatch();
     let navigate = useNavigate();
 
-    const pet_from_local = cats.filter(cat => parseInt(cat.id) === parseInt(pet_id))[0];
+    const [pet, setPet] = useState({});
+
+    const {
+        register,
+        handleSubmit,
+        formState: { errors }
+    } = useForm({
+        mode: "onBlur",
+        defaultValues: pet,
+    });
 
     const [image, setImage] = useState();
     const [preview, setPreview] = useState();
 
+    const handleLoading = () => {
+        dispatch(setLoad());
+    }
+
     useEffect(() => {
+        const loadPet = async () => {
+            handleLoading();
+            await axios({
+                method: "get",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${jwttoken}`
+                },
+                url: `https://cordy-app.herokuapp.com/cats/${pet_id}`
+            })
+                .then(function (response) {
+                    setPet(prevPet => ({
+                        ...prevPet,
+                        id: response.data.id,
+                        name: response.data.name,
+                        sex: response.data.sex,
+                        breed: response.data.breed,
+                        age: response.data.age,
+                        price: response.data.price,
+                        passport: response.data.passport,
+                        vaccination: response.data.vaccination,
+                        certificates: response.data.certificates,
+                        info: response.data.info,
+                        photo: response.data.photo,
+                        address: response.data.address,
+                        owner_id: response.data.owner_id,
+                        owner_phoneNumber: response.data.owner_phoneNumber,
+                        owner_mail: response.data.owner_mail,
+                        owner_address: response.data.owner_address,
+                        owner_ranking: response.data.owner_ranking,
+                        owner_name: response.data.owner_name,
+                        count_feedback: response.data.count_feedback,
+                        owner_avatar: response.data.owner_avatar,
+                        liked: response.data.liked
+                    }));
+                    handleLoading();
+                })
+                .catch(function (error) {
+                    handleLoading();
+                    navigate('/error/404');
+                })
+        }
+        loadPet();
         if (image) {
             const reader = new FileReader();
             reader.onloadend = () => {
@@ -34,15 +92,6 @@ const PetEdit = () => {
             setPreview(null);
         }
     }, [image]);
-
-    const {
-        register,
-        handleSubmit,
-        formState: { errors }
-    } = useForm({
-        mode: "onBlur",
-        defaultValues: pet_from_local,
-    });
 
     const onImageUpdate = async (cat_id) => {
 
@@ -86,6 +135,7 @@ const PetEdit = () => {
     }
 
     const onSubmit = async (data) => {
+        handleLoading();
         await axios({
             method: "put",
             url: `https://cordy-app.herokuapp.com/users/${id}/cats/${pet_id}`,
@@ -108,6 +158,7 @@ const PetEdit = () => {
                 });
                 const cat_id = response.data.id;
                 onImageUpdate(cat_id);
+                handleLoading();
             })
             .catch(function (error) {
                 toast.warn(error.response, {
@@ -120,6 +171,7 @@ const PetEdit = () => {
                     progress: undefined,
                     theme: "colored",
                 });
+                handleLoading();
             })
     }
 
@@ -269,7 +321,7 @@ const PetEdit = () => {
                                 setImage(null);
                         }}
                     />
-                    {pet_from_local.photo ? <img src={pet_from_local.photo} alt="preview_Local" /> : <></>}
+                    {pet.photo ? <img src={pet.photo} alt="preview_Local" /> : <></>}
                     {preview ? <img src={preview} alt="preview" /> : <></>}
 
                     {errors.file && <span>{errors.file.message}</span>}

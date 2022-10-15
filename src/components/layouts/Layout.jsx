@@ -1,20 +1,32 @@
 import React from 'react'
-import { Outlet } from 'react-router-dom'
+import { Outlet } from 'react-router-dom';
+import { useSelector, useDispatch } from "react-redux";
 
 import '../../assets/styles/general.scss'
 
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import Header from './Header'
+import Header from './Header';
+import Load from "../ui/Load/Load";
+
+import { setLoad } from "../../store/features/load/loadSlice";
 
 const Layout = () => {
+
+    const dispatch = useDispatch();
+    const loadSelector = useSelector((state) => state.load.loadState);
+
+    // if (loadSelector === true)
+    //     dispatch(setLoad());
+
     return (
         <>
             <Header />
             <main>
                 <Outlet />
             </main>
+            {loadSelector && <Load />}
             <ToastContainer
                 position="top-center"
                 autoClose={5000}

@@ -1,8 +1,9 @@
 .button {
     padding: 20px 30px;
-    background-color: #1a91f0;
+    background-color: transparent;
+
     line-height: 1;
-    color: #ffffff;
+
     border-radius: 4px;
     user-select: none;
 
@@ -19,7 +20,22 @@
 
     width: 250px;
 
+    color: 333;
+    border: 1px solid #333;
+
+    &:hover {
+        border-color: #1170cd;
+        color: #1170cd;
+    }
+}
+
+.outline {
+    border: none;
+    background-color: #1a91f0;
+    color: #ffffff;
+
     &:hover {
         background-color: #1170cd;
+        color: #ffffff;
     }
 }

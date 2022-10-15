@@ -6,6 +6,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 
 import { useAuth } from "../hooks/useAuth";
+import { setLoad } from "../../store/features/load/loadSlice";
 import Button from '../ui/Button/Button';
 import { useDispatch } from 'react-redux';
 
@@ -19,6 +20,10 @@ const PetAdd = () => {
 
     const [image, setImage] = useState();
     const [preview, setPreview] = useState();
+
+    const handleLoading = () => {
+        dispatch(setLoad());
+    }
 
     useEffect(() => {
         if (image) {
@@ -82,6 +87,7 @@ const PetAdd = () => {
     }
 
     const onSubmit = async (data) => {
+        handleLoading();
         await axios({
             method: "post",
             url: `https://cordy-app.herokuapp.com/users/${id}/cats`,
@@ -104,6 +110,7 @@ const PetAdd = () => {
                 });
                 const cat_id = response.data.id;
                 onImageUpdate(cat_id);
+                handleLoading();
             })
             .catch(function (error) {
                 toast.warn(error.response, {
@@ -116,6 +123,7 @@ const PetAdd = () => {
                     progress: undefined,
                     theme: "colored",
                 });
+                handleLoading();
             })
     }
 

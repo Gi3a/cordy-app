@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setUser } from "../../store/features/user/userSlice";
+import { setLoad } from "../../store/features/load/loadSlice";
 
 import { toast } from 'react-toastify';
 
@@ -21,7 +22,12 @@ const Signup = () => {
         mode: "onBlur"
     });
 
+    const handleLoading = () => {
+        dispatch(setLoad());
+    }
+
     const onSubmit = async (data) => {
+        handleLoading();
         await axios({
             method: "post",
             url: "https://cordy-app.herokuapp.com/signUp",
@@ -43,10 +49,21 @@ const Signup = () => {
                     favorites: response.data.favorites,
                     cats: response.data.cats
                 }));
+                handleLoading();
                 navigate('/');
             })
             .catch(function (error) {
-                toast(error);
+                toast.warn(`Ошибка ${error}`, {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                });
+                handleLoading();
             })
     }
 

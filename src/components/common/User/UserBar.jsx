@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 
 
 import Button from "../../ui/Button/Button";
+import ButtonImage from "../../ui/Button/ButtonImage"
 import styles from "./User.module.scss";
 import { useNavigate } from 'react-router-dom';
 import { unsetUser } from '../../../store/features/user/userSlice';

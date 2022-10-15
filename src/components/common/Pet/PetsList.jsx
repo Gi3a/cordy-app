@@ -5,7 +5,7 @@ import { useAuth } from "../../hooks/useAuth";
 import styles from "./Pet.module.scss";
 import PetItem from "./PetItem";
 
-const PetList = ({ pets, belong }) => {
+const PetList = ({ pets }) => {
 
     const { id, jwttoken } = useAuth();
 
@@ -46,7 +46,6 @@ const PetList = ({ pets, belong }) => {
                                 price={price}
                                 sex={sex}
                                 vaccination={vaccination}
-                                belong={belong}
                                 owner_id={owner_id}
                                 owner_token={owner_token}
                             />

@@ -12,9 +12,11 @@ import {
 import storage from "redux-persist/lib/storage";
 
 import userReducer from "./features/user/userSlice";
+import loadReducer from "./features/load/loadSlice";
 
 const rootReducer = combineReducers({
     user: userReducer,
+    load: loadReducer
 });
 
 const persistConfig = {

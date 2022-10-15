@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
 import { useAuth } from "../hooks/useAuth";
+import { setLoad } from "../../store/features/load/loadSlice";
 import Button from '../ui/Button/Button';
 
 import { FaSearch, FaFilter } from "react-icons/fa";
@@ -15,6 +17,7 @@ const Search = () => {
     const { id, jwttoken } = useAuth();
 
     let navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const {
         register,
@@ -24,7 +27,12 @@ const Search = () => {
         mode: "onBlur"
     });
 
+    const handleLoading = () => {
+        dispatch(setLoad());
+    }
+
     const onSubmit = async (data) => {
+        handleLoading();
         await axios({
             method: "post",
             url: `https://cordy-app.herokuapp.com/users/${id}/cats`,
@@ -36,6 +44,7 @@ const Search = () => {
         })
             .then(function (response) {
                 console.log(response);
+                handleLoading();
             })
             .catch(function (error) {
                 toast.warn(error.response, {
@@ -48,6 +57,7 @@ const Search = () => {
                     progress: undefined,
                     theme: "colored",
                 });
+                handleLoading();
             })
     }
 
@@ -55,14 +65,14 @@ const Search = () => {
         <div className="page">
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="form-control form-search">
-                    <Button id={"btn_filter"} text={<FaFilter />} />
+                    <Button id={"btn_filter"} text={<FaFilter />} flag={true} />
                     <input
                         type="text"
                         name="name"
                         placeholder="Введит поиск запроса. Например: Балийская кошка или Турецкий ван..."
                         {...register("name")}
                     />
-                    <Button id={"btn_search"} text={<FaSearch />} type="submit" />
+                    <Button id={"btn_search"} text={<FaSearch />} type="submit" flag={true} />
                 </div>
             </form>
         </div>
