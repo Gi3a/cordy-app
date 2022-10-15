@@ -73,6 +73,29 @@ form {
         }
     }
 
+    .form-search {
+        flex-direction: row;
+
+        input {
+            width: 100%;
+            border-radius: 0;
+        }
+
+        button {
+            width: auto;
+            margin: 0 auto;
+        }
+
+        #btn_filter {
+            border-radius: 4px 0 0 4px;
+        }
+
+        #btn_search {
+            border-radius: 0 4px 4px 0;
+
+        }
+    }
+
     .form-bool {
         flex-direction: row;
 
@@ -80,5 +103,14 @@ form {
             width: 10%;
         }
 
+    }
+
+
+    @media (min-width: 769px) and (max-width: 1024px) {
+        width: 100%;
+    }
+
+    @media (min-width: 150px) and (max-width: 768px) {
+        width: 100%;
     }
 }

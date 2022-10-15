@@ -10,10 +10,9 @@
     overflow: hidden;
     transition: 0.2s ease-in-out;
 
-    // width: 30%;
+    width: 30%;
     margin: 15px 0;
-    width: 550px;
-    min-height: 250px;
+    min-height: 150px;
 
     box-shadow: rgb(15 56 113 / 32%) 0px 0px 1px, rgb(15 56 113 / 12%) 0px 1px 2px, rgb(15 56 113 / 8%) 0px 2px 4px;
 
@@ -22,10 +21,11 @@
     }
 
     .pet_like,
-    .pet_delete {
+    .pet_delete,
+    .pet_edit {
         position: absolute;
-        right: 60px;
-        top: 15px;
+        right: 0px;
+        top: 0px;
         padding: 15px;
         cursor: pointer;
 
@@ -44,7 +44,11 @@
     }
 
     .pet_delete {
-        right: 15px;
+        right: 0px;
+    }
+
+    .pet_edit {
+        top: 45px;
     }
 
     & a {
@@ -88,6 +92,43 @@
             }
         }
     }
+
+    @media (min-width: 769px) and (max-width: 1024px) {}
+
+    @media (min-width: 150px) and (max-width: 768px) {
+
+        width: 100%;
+        height: auto;
+
+        & a {
+            flex-direction: column;
+        }
+
+        & a>div {
+            align-items: center;
+            width: 100% !important;
+        }
+
+        & a img {
+            position: static !important;
+            width: 100% !important;
+            height: 100%;
+        }
+
+
+
+        .pet_delete,
+        .pet_edit {
+            // top: 0;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.1);
+            border-radius: 0 4px 0 0;
+
+            & svg {
+                color: #fff !important;
+            }
+        }
+    }
 }
 
 .pet_list {
@@ -103,6 +144,16 @@
         justify-content: center;
         margin-top: 50px;
         width: 100%;
+    }
+
+    @media (min-width: 769px) and (max-width: 1024px) {}
+
+    @media (min-width: 150px) and (max-width: 768px) {
+        padding: 0 40px;
+
+        & h2 {
+            margin-top: 25px;
+        }
     }
 }
 
@@ -151,6 +202,18 @@
                 font-weight: bold;
                 margin-right: 5px;
             }
+        }
+    }
+
+    @media (min-width: 769px) and (max-width: 1024px) {}
+
+    @media (min-width: 150px) and (max-width: 768px) {
+        flex-direction: column;
+        margin: 0;
+
+
+        &>div {
+            width: 100% !important;
         }
     }
 }

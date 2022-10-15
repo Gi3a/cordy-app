@@ -27,6 +27,8 @@
     justify-content: center;
     align-items: center;
 
+    overflow: hidden;
+
     flex-wrap: wrap;
 
     min-height: 100vh;
@@ -35,7 +37,12 @@
 
     &>* {
         max-width: 80%;
+    }
 
+    @media (min-width: 769px) and (max-width: 1024px) {}
+
+    @media (min-width: 150px) and (max-width: 768px) {
+        margin-top: 0;
     }
 }
 
@@ -54,4 +61,27 @@ h3 {
 
 p {
     color: #1e2532;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: rgb(239, 242, 249);
+    border-radius: 3px;
+
+    border: 1px solid #000;
+
+    transition: 0.3s all ease-in-out;
+
+    &:hover {
+        background-color: #999;
+    }
 }

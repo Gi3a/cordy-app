@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import styles from "./Pet.module.scss";
 
 import { MdPets, MdLocationPin } from "react-icons/md";
-import { FaRubleSign, FaHeart, FaTimes, FaRegHeart } from "react-icons/fa";
+import { FaRubleSign, FaHeart, FaTimes, FaRegHeart, FaRegEdit } from "react-icons/fa";
 
 const PetItem = ({
     id,
@@ -23,16 +23,12 @@ const PetItem = ({
     price,
     sex,
     vaccination,
-    liked,
     belong,
     owner_id,
-    owner_token }) => {
+    owner_token
+}) => {
 
     let navigate = useNavigate();
-
-    const handleFavourite = () => {
-        console.log("liked");
-    }
 
     useEffect(() => {
 
@@ -88,7 +84,7 @@ const PetItem = ({
                     <span><MdLocationPin />{address}</span>
                 </div>
             </Link>
-            <span
+            {/* <span
                 className={styles.pet_like}
                 onClick={handleFavourite}
                 title="🧡 Like"
@@ -98,16 +94,25 @@ const PetItem = ({
                     :
                     <FaRegHeart />
                 }
-            </span>
+            </span> */}
 
             {belong &&
-                <span
-                    className={styles.pet_delete}
-                    onClick={handleDelete}
-                    title="🗑️ Delete"
-                >
-                    <FaTimes />
-                </span>
+                <>
+                    <span
+                        className={styles.pet_edit}
+                        onClick={() => navigate(`/pets/${id}/edit`)}
+                        title="✏️ Edit"
+                    >
+                        <FaRegEdit />
+                    </span>
+                    <span
+                        className={styles.pet_delete}
+                        onClick={handleDelete}
+                        title="🗑️ Delete"
+                    >
+                        <FaTimes />
+                    </span>
+                </>
             }
         </div>
     )

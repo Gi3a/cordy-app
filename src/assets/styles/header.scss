@@ -3,11 +3,14 @@ header {
     display: flex;
     height: 100%;
     width: 100%;
+    transition: 0.3s all ease-in-out;
 
     nav {
         display: flex;
         flex-direction: row;
         justify-content: space-around;
+
+        overflow: hidden;
 
         z-index: 999;
 
@@ -21,6 +24,7 @@ header {
         left: 0;
         right: 0;
 
+        transition: 0.3s all ease-in-out;
 
         &>div {
             display: flex;
@@ -75,9 +79,16 @@ header {
 
             .nav__menu {
                 width: 100%;
+                overflow: hidden;
+
+                span {
+                    display: none;
+                }
 
                 a {
-                    width: 100%;
+                    width: 20%;
+                    margin: 0;
+                    padding: 15px 0;
                 }
             }
 

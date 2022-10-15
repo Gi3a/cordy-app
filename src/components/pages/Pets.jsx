@@ -9,10 +9,15 @@ import { useAuth } from "../hooks/useAuth";
 const Pets = () => {
 
     const { user_id } = useParams();
-    const { jwttoken } = useAuth();
+    const { id, jwttoken } = useAuth();
 
     let navigate = useNavigate();
     const [pets, setPets] = useState([]);
+
+    let belong = false;
+
+    if (parseInt(id) === parseInt(user_id))
+        belong = true;
 
     useEffect(() => {
         axios({
@@ -29,11 +34,11 @@ const Pets = () => {
             .catch(function (error) {
                 navigate('/error/404');
             })
-    }, [navigate]);
+    }, [user_id, navigate]);
 
     return (
         <div className="page">
-            <PetList pets={pets} />
+            <PetList pets={pets} belong={belong} />
         </div>
     )
 }

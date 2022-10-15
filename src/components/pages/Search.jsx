@@ -6,6 +6,9 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 
 import { useAuth } from "../hooks/useAuth";
+import Button from '../ui/Button/Button';
+
+import { FaSearch, FaFilter } from "react-icons/fa";
 
 const Search = () => {
 
@@ -51,12 +54,16 @@ const Search = () => {
     return (
         <div className="page">
             <form onSubmit={handleSubmit(onSubmit)}>
-                <input
-                    type="text"
-                    name="name"
-                    placeholder="Введит поиск запроса"
-                    {...register("name")}
-                />
+                <div className="form-control form-search">
+                    <Button id={"btn_filter"} text={<FaFilter />} />
+                    <input
+                        type="text"
+                        name="name"
+                        placeholder="Введит поиск запроса. Например: Балийская кошка или Турецкий ван..."
+                        {...register("name")}
+                    />
+                    <Button id={"btn_search"} text={<FaSearch />} type="submit" />
+                </div>
             </form>
         </div>
     )

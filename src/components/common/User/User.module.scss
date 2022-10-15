@@ -81,4 +81,19 @@
             }
         }
     }
+
+    @media (min-width: 769px) and (max-width: 1024px) {}
+
+    @media (min-width: 150px) and (max-width: 768px) {
+        flex-direction: column;
+        margin: 0;
+
+        & .user_avatar {
+            width: 100%;
+        }
+
+        & .user_description {
+            width: 100%;
+        }
+    }
 }

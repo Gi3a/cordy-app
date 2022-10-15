@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import axios from 'axios';
 import { toast } from 'react-toastify';
@@ -9,13 +9,16 @@ import { useAuth } from "../hooks/useAuth";
 import Button from '../ui/Button/Button';
 import { useDispatch } from 'react-redux';
 
-const PetAdd = () => {
+const PetEdit = () => {
 
+    const { pet_id } = useParams();
+    const { id, jwttoken, cats } = useAuth();
 
-    const { id, jwttoken } = useAuth();
 
     const dispatch = useDispatch();
     let navigate = useNavigate();
+
+    const pet_from_local = cats.filter(cat => parseInt(cat.id) === parseInt(pet_id))[0];
 
     const [image, setImage] = useState();
     const [preview, setPreview] = useState();
@@ -37,7 +40,8 @@ const PetAdd = () => {
         handleSubmit,
         formState: { errors }
     } = useForm({
-        mode: "onBlur"
+        mode: "onBlur",
+        defaultValues: pet_from_local,
     });
 
     const onImageUpdate = async (cat_id) => {
@@ -83,8 +87,8 @@ const PetAdd = () => {
 
     const onSubmit = async (data) => {
         await axios({
-            method: "post",
-            url: `https://cordy-app.herokuapp.com/users/${id}/cats`,
+            method: "put",
+            url: `https://cordy-app.herokuapp.com/users/${id}/cats/${pet_id}`,
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": `Bearer ${jwttoken}`
@@ -92,7 +96,7 @@ const PetAdd = () => {
             data: data
         })
             .then(function (response) {
-                toast.success("Питомец добавлен", {
+                toast.success("Питомец изменен", {
                     position: "top-center",
                     autoClose: 5000,
                     hideProgressBar: true,
@@ -122,7 +126,7 @@ const PetAdd = () => {
     return (
         <div className="page">
             <form onSubmit={handleSubmit(onSubmit)}>
-                <h2>Добавить питомца</h2>
+                <h2>Изменить питомца</h2>
 
                 <div className="form-control">
                     <label>Имя питомца</label>
@@ -256,9 +260,7 @@ const PetAdd = () => {
                     <input
                         type="file"
                         name="file"
-                        {...register("file"
-                            , { required: "Проверьте фотографию", }
-                        )}
+                        {...register("file")}
                         onChange={(event) => {
                             const file = event.target.files[0];
                             if (file && file.type.substr(0, 5) === "image")
@@ -267,6 +269,7 @@ const PetAdd = () => {
                                 setImage(null);
                         }}
                     />
+                    {pet_from_local.photo ? <img src={pet_from_local.photo} alt="preview_Local" /> : <></>}
                     {preview ? <img src={preview} alt="preview" /> : <></>}
 
                     {errors.file && <span>{errors.file.message}</span>}
@@ -274,11 +277,11 @@ const PetAdd = () => {
 
 
                 <div className="form-control">
-                    <Button type="submit" text="Добавить питомца" />
+                    <Button type="submit" text="Изменить питомца" />
                 </div>
             </form >
         </div>
     )
 }
 
-export default PetAdd
+export default PetEdit

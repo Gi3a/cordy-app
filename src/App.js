@@ -20,6 +20,7 @@ import Error from './components/pages/Error';
 
 import ProtectedRoutes from './components/common/ProtectedRoutes';
 import ProtectedRoutesAuth from './components/common/ProtectedRoutesAuth';
+import PetEdit from './components/pages/PetEdit';
 
 function App() {
     return (
@@ -41,6 +42,7 @@ function App() {
                         <Route path="/:user_id/feedbacks" element={<Feedbacks />} />
                         <Route path="/pet/:pet_id" element={<Pet />} />
                         <Route path="/pets/:user_id" element={<Pets />} />
+                        <Route path="/pets/:pet_id/edit" element={<PetEdit />} />
                         <Route path="/profile/edit" element={<UserEdit />} />
                         <Route path="/:user_id/feedback_add" element={<FeedbackAdd />} />
                     </Route>

@@ -26,23 +26,23 @@ const Header = () => {
                         <>
                             <Link to="/search">
                                 <TbSearch />
-                                Поиск
+                                <span>Поиск</span>
                             </Link>
                             <Link to="/favorites">
                                 <TbHeart />
-                                Избранное
+                                <span>Избранное</span>
                             </Link>
                             <Link to="/pet">
                                 <TbSquarePlus />
-                                Добавить Питомца
+                                <span>Добавить Питомца</span>
                             </Link>
                             <Link to={`/pets/${id}`}>
                                 <MdPets />
-                                Мои Питомцы
+                                <span>Мои Питомцы</span>
                             </Link>
                             <Link to={`/${id}`}>
                                 <TbUser />
-                                {name}
+                                <span>{name}</span>
                             </Link>
                         </>
                         :
