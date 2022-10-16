@@ -19,7 +19,7 @@ const PetList = ({ pets, my_pets, my_favourties }) => {
         <div className={styles.pet_list}>
             {pets.length > 0 ?
                 <>
-                    <h2>Питомцы</h2>
+                    <h1>Питомцы</h1>
                     {pets.map(({
                         id,
                         name,

@@ -7,6 +7,8 @@ import Layout from './components/layouts/Layout';
 import Home from './components/pages/Home';
 import Signup from './components/pages/Signup';
 import Login from './components/pages/Login';
+import Forgot from './components/pages/Forgot';
+import Recover from './components/pages/Recover';
 import User from './components/pages/User';
 import Search from './components/pages/Search';
 import Feedbacks from './components/pages/Feedbacks';
@@ -31,6 +33,8 @@ function App() {
                     <Route element={<ProtectedRoutesAuth />}>
                         <Route path="/signup" element={<Signup />} />
                         <Route path="/login" element={<Login />} />
+                        <Route path="/forgot" element={<Forgot />} />
+                        <Route path="/login" element={<Recover />} />
                     </Route>
 
                     <Route element={<ProtectedRoutes />}>

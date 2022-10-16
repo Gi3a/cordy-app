@@ -4,15 +4,17 @@ import styles from "./Feedback.module.scss";
 
 import { FaStarHalfAlt, FaStar, FaRegStar } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import Image from "../../ui/Image/Image";
 
 const FeedbackItem = ({ id, user_id, date, text, name, avatar, rating }) => {
 
 
     return (
         <div className={styles.feedback_item}>
-            <div className={styles.feedback_item_avatar}>
+            <Image src={`${avatar}`} className={styles.feedback_item_avatar} />
+            {/* <div className={styles.feedback_item_avatar}>
                 <img src={`${avatar}`} alt="avatar" />
-            </div>
+            </div> */}
             <div className={styles.feedback_item_description}>
                 <div className={styles.feedback_item_rating}>
                     <span>

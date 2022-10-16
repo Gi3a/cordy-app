@@ -8,6 +8,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 
 import { FaHeart, FaRegHeart } from "react-icons/fa";
+import Image from "../../ui/Image/Image";
 
 const PetBar = (pet) => {
     const {
@@ -152,11 +153,24 @@ const PetBar = (pet) => {
 
     return (
         <>
+            <div className={styles.owner_bar}>
+                <Image src={`${owner_avatar}`} className={styles.owner_avatar} />
+                <div className={styles.owner_description}>
+                    <div>
+                        <span><b>Владелец:</b>{owner_name}</span>
+                    </div>
+                    <div>
+                        <span><b>Ранг:</b>{owner_ranking}</span>
+                        <span><b>Количество фидбеков:</b>{count_feedback}</span>
+                    </div>
+                </div>
+            </div>
             <div className={styles.pet_bar}>
+
                 <div className={styles.pet_photo}>
                     <img src={`${photo}`} alt="pet_photo" />
                     {parseInt(parseInt(pet.my_id) === parseInt(owner_id)) ?
-                        <>
+                        <div className={styles.buttons}>
                             <Button text="Позвонить" onClick={() => window.location = `tel:${owner_mail}`} />
                             <Button text="Написать email" onClick={() => window.location = `mailto:${owner_mail}`} />
                             {like ?
@@ -172,12 +186,12 @@ const PetBar = (pet) => {
                                     text={<FaRegHeart />}
                                 />
                             }
-                        </>
+                        </div>
                         :
-                        <>
+                        <div className={styles.buttons}>
                             <Button text="Редактировать" onClick={() => navigate(`/pets/${id}/edit`)} />
                             <Button text="Удалить" onClick={handleDelete} />
-                        </>
+                        </div>
                     }
                 </div>
                 <div className={styles.pet_description}>
@@ -191,20 +205,6 @@ const PetBar = (pet) => {
                     <span><b>Вакцинация:</b> {vaccination}</span>
                     <span><b>Сертификаты:</b> {certificates}</span>
                     <span><p>{info}</p></span>
-                </div>
-            </div>
-            <div className={styles.owner_bar}>
-                <div className={styles.owner_avatar}>
-                    <img src={`${owner_avatar}`} alt="owner avatar" />
-                </div>
-                <div className={styles.owner_description}>
-                    <div>
-                        {owner_name}
-                    </div>
-                    <div>
-                        {owner_ranking}
-                        {count_feedback}
-                    </div>
                 </div>
             </div>
         </>

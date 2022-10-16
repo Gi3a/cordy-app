@@ -1,6 +1,7 @@
 .user_item {
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
 
     cursor: pointer;
 
@@ -53,7 +54,7 @@
     & .user_avatar {
         display: flex;
         flex-direction: column;
-        width: 30%;
+        width: 20%;
 
         & img {
             width: 100%;
@@ -73,7 +74,7 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-        width: 60%;
+        width: 70%;
 
         & span {
             display: flex;
