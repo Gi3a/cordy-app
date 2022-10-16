@@ -4,7 +4,7 @@
     align-items: center;
     justify-content: center;
     padding: 20px 30px;
-    background-color: transparent;
+    background-color: #fff;
 
     line-height: 1;
 
@@ -24,8 +24,8 @@
 
     width: 250px;
 
-    color: 333;
-    border: 1px solid #333;
+    color: #333;
+    border: 1px solid #e5e5e5;
 
     & svg {
         padding: 5px 0;
@@ -35,6 +35,10 @@
         border-color: #1170cd;
         color: #1170cd;
     }
+}
+
+.small {
+    padding: 5px;
 }
 
 .outline {

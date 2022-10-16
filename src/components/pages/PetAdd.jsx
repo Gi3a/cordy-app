@@ -7,6 +7,8 @@ import { toast } from 'react-toastify';
 
 import { useAuth } from "../hooks/useAuth";
 import { setLoad } from "../../store/features/load/loadSlice";
+import { setCats } from "../../store/features/user/userSlice";
+
 import Button from '../ui/Button/Button';
 import { useDispatch } from 'react-redux';
 
@@ -110,6 +112,7 @@ const PetAdd = () => {
                 });
                 const cat_id = response.data.id;
                 onImageUpdate(cat_id);
+                dispatch(setCats(response.data))
                 handleLoading();
             })
             .catch(function (error) {

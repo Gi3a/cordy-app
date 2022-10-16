@@ -171,19 +171,21 @@ const PetBar = (pet) => {
                     <img src={`${photo}`} alt="pet_photo" />
                     {parseInt(parseInt(pet.my_id) === parseInt(owner_id)) ?
                         <div className={styles.buttons}>
-                            <Button text="Позвонить" onClick={() => window.location = `tel:${owner_mail}`} />
-                            <Button text="Написать email" onClick={() => window.location = `mailto:${owner_mail}`} />
+                            <Button text="Позвонить" onClick={() => window.location = `tel:${owner_mail}`} smll={true} />
+                            <Button text="Написать email" onClick={() => window.location = `mailto:${owner_mail}`} smll={true} />
                             {like ?
                                 <Button
                                     title="🧡 Liked"
                                     text={<FaHeart color="red" />}
                                     onClick={handleUnlike}
+                                    smll={true}
                                 />
                                 :
                                 <Button
                                     onClick={handleLike}
                                     title="🧡 Like"
                                     text={<FaRegHeart />}
+                                    smll={true}
                                 />
                             }
                         </div>

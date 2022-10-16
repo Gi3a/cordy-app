@@ -17,9 +17,6 @@ const Layout = () => {
     const dispatch = useDispatch();
     const loadSelector = useSelector((state) => state.load.loadState);
 
-    // if (loadSelector === true)
-    //     dispatch(setLoad());
-
     return (
         <>
             <Header />

@@ -5,7 +5,7 @@ import FeedbackItem from "./FeedbackItem";
 const FeedbackList = ({ feedbacks }) => {
     return (
         <div className={styles.feedback_list}>
-            {feedbacks.length > 0 ?
+            {feedbacks?.length > 0 ?
                 <>
                     <h1>Отзывы</h1>
                     {feedbacks.map(({ id, user_id, date, text, name, avatar, rating }) => {

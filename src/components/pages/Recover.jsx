@@ -78,12 +78,6 @@ const Recover = () => {
             <form onSubmit={handleSubmit(onSubmit)}>
                 <h1>Новый пароль</h1>
 
-                <input
-                    type="hidden"
-                    name="token"
-                    {...register("token", {})}
-                />
-
                 <div className="form-control">
                     <label>Пароль</label>
                     <input
@@ -99,6 +93,12 @@ const Recover = () => {
                     />
                     {errors.password && <span>{errors.password.message}</span>}
                 </div>
+
+                <input
+                    type="hidden"
+                    name="token"
+                    {...register("token", {})}
+                />
 
                 <div className="form-control">
                     <Button type="submit" text="Сохранить" flag="true" />

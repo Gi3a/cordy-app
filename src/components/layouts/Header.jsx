@@ -7,6 +7,7 @@ import { useAuth } from "../hooks/useAuth";
 import Paws from "../../assets/images/icons/paws.svg";
 import { TbSearch, TbUser, TbHeart, TbSquarePlus } from "react-icons/tb";
 import { MdPets, MdLogin } from "react-icons/md";
+import { GiCat } from "react-icons/gi";
 
 const Header = () => {
 
@@ -18,8 +19,7 @@ const Header = () => {
                 <nav>
                     <div className="nav__logo">
                         <Link to="/">
-                            <MdPets />
-                            <span>TiNimal</span>
+                            TiNimal
                         </Link>
                     </div>
                     <div className="nav__menu">
@@ -38,7 +38,7 @@ const Header = () => {
                             <span>Добавить Питомца</span>
                         </Link>
                         <Link to={`/pets/${id}`}>
-                            <MdPets />
+                            <GiCat />
                             <span>Мои Питомцы</span>
                         </Link>
                         <Link to={`/${id}`}>

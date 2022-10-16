@@ -5,7 +5,9 @@
 
     position: relative;
 
-    background-color: #fff;
+    background-color: #f0f3f6;
+    border: 1px solid #e5e5e5;
+    ;
     border-radius: 4px;
     overflow: hidden;
     transition: 0.2s ease-in-out;
@@ -138,7 +140,7 @@
 .pet_list {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-evenly;
     width: 100%;
 
     padding: 40px;
@@ -167,7 +169,8 @@
 
     justify-content: space-around;
 
-    background-color: #fff;
+    background-color: #C2D5E0;
+    ;
     padding: 40px;
     margin: 15px;
     font-size: 18px;
@@ -234,7 +237,10 @@
 
     justify-content: space-around;
 
-    background-color: #fff;
+    background-color: #f0f3f6;
+    border: 1px solid #e5e5e5;
+    box-shadow: rgb(15 56 113 / 32%) 0px 0px 1px, rgb(15 56 113 / 12%) 0px 1px 2px, rgb(15 56 113 / 8%) 0px 2px 4px;
+
     padding: 40px;
     margin: 15px;
     border-radius: 4px;

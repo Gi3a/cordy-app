@@ -30,15 +30,15 @@ const UserBar = ({ user, my_profile }) => {
                 <span><b>Адрес:</b> {address}</span>
                 <span><b>Ранг:</b> {ranking}</span>
                 <div className={styles.buttons}>
-                    <Button text="Отзывы" onClick={() => navigate(`/${id}/feedbacks`)}>
+                    <Button text="Отзывы" onClick={() => navigate(`/${id}/feedbacks`)} smll={true}>
                         <FaRegCommentDots />
                     </Button>
                     {my_profile &&
                         <>
-                            <Button text="Редактировать профиль" onClick={() => navigate("/profile/edit")}>
+                            <Button text="Редактировать профиль" onClick={() => navigate("/profile/edit")} smll={true}>
                                 <FaUserEdit />
                             </Button>
-                            <Button text="Выйти" onClick={() => dispatch(unsetUser())}>
+                            <Button text="Выйти" onClick={() => dispatch(unsetUser())} smll={true}>
                                 <FaPowerOff />
                             </Button>
                         </>

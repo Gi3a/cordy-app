@@ -34,7 +34,10 @@ const userSlice = createSlice({
             state.feedbacks = action.payload.feedbacks;
         },
         setCats(state, action) {
-            state.cats = action.payload.cats;
+            if (!state.cats)
+                state.cats = action.payload;
+            else
+                state.cats.push(action.payload)
         },
         setFavorites(state, action) {
             state.favorites = action.payload.favorites;

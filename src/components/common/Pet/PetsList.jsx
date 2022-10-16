@@ -17,7 +17,7 @@ const PetList = ({ pets, my_pets, my_favourties }) => {
 
     return (
         <div className={styles.pet_list}>
-            {pets.length > 0 ?
+            {pets?.length > 0 ?
                 <>
                     <h1>Питомцы</h1>
                     {pets.map(({
@@ -32,7 +32,8 @@ const PetList = ({ pets, my_pets, my_favourties }) => {
                         photo,
                         price,
                         sex,
-                        vaccination
+                        vaccination,
+                        owner_address
                     }) => {
                         return (
                             <PetItem
@@ -51,6 +52,7 @@ const PetList = ({ pets, my_pets, my_favourties }) => {
                                 vaccination={vaccination}
                                 owner_id={owner_id}
                                 owner_token={owner_token}
+                                owner_address={owner_address}
                             />
                         );
                     })}

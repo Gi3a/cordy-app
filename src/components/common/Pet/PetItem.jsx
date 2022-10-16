@@ -24,7 +24,8 @@ const PetItem = ({
     sex,
     vaccination,
     owner_id,
-    owner_token
+    owner_token,
+    owner_address
 }) => {
 
     let navigate = useNavigate();
@@ -39,7 +40,7 @@ const PetItem = ({
                     <span>{name}</span>
                     <span><FaRubleSign />{price}</span>
                     <span><MdPets />{breed}</span>
-                    <span><MdLocationPin />{address}</span>
+                    <span><MdLocationPin />{owner_address}</span>
                 </div>
             </Link>
         </div>

@@ -48,7 +48,7 @@ const Search = () => {
         })
             .then(function (response) {
                 console.log(response.data);
-                setPets(...pets, response.data);
+                setPets(response.data);
                 handleLoading();
             })
             .catch(function (error) {
