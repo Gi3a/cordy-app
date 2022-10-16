@@ -12,9 +12,6 @@ const FeedbackItem = ({ id, user_id, date, text, name, avatar, rating }) => {
     return (
         <div className={styles.feedback_item}>
             <Image src={`${avatar}`} className={styles.feedback_item_avatar} />
-            {/* <div className={styles.feedback_item_avatar}>
-                <img src={`${avatar}`} alt="avatar" />
-            </div> */}
             <div className={styles.feedback_item_description}>
                 <div className={styles.feedback_item_rating}>
                     <span>
@@ -24,7 +21,7 @@ const FeedbackItem = ({ id, user_id, date, text, name, avatar, rating }) => {
                     </span>
                     <span>
                         {parseInt(rating) <= 2.5 ?
-                            parseInt(rating) == 0 ?
+                            parseInt(rating) === 0 ?
                                 <FaRegStar />
                                 :
                                 <FaStarHalfAlt />

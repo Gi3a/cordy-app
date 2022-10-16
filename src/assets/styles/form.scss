@@ -32,6 +32,13 @@ form {
             justify-content: center;
         }
 
+        & .inline_link {
+            position: absolute;
+            right: 3%;
+            top: 47%;
+            padding: 5px;
+        }
+
         & label,
         & span {
             display: flex;

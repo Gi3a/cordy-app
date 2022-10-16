@@ -24,7 +24,7 @@ const PetBar = (pet) => {
         info,
         photo,
         owner_id,
-        owner_phoneNumber,
+        // owner_phoneNumber,
         owner_avatar,
         liked,
         owner_mail,

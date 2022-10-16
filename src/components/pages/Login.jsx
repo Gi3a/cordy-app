@@ -104,6 +104,9 @@ const Login = () => {
                             }
                         })}
                     />
+                    <Link to="/forgot" className="inline_link">
+                        Забыли пароль?
+                    </Link>
                     {errors.password && <span>{errors.password.message}</span>}
                 </div>
 

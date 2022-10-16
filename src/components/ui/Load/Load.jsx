@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import styles from "./Load.module.scss";
 import { useDispatch } from "react-redux";
 import { ProgressBar } from "react-loader-spinner";
