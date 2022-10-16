@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Button.module.scss";
 
-const Button = ({ text, type, onClick, className, id, flag }) => {
+const Button = ({ text, type, onClick, className, id, flag, title, children }) => {
 
     let outline;
     if (flag)
@@ -13,7 +13,9 @@ const Button = ({ text, type, onClick, className, id, flag }) => {
             type={type}
             onClick={onClick}
             className={`${styles.button} ${className} ${outline}`}
+            title={title}
         >
+            {children}
             {text}
         </button>
     )

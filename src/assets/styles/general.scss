@@ -32,7 +32,7 @@
     flex-wrap: wrap;
 
     min-height: 100vh;
-    margin-top: 66px;
+    // margin-top: 53px;
     background-color: #c2d5e0;
 
     &>* {
@@ -83,5 +83,22 @@ p {
 
     &:hover {
         background-color: #999;
+    }
+}
+
+.paws {
+    width: 40%;
+}
+
+.message {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+
+    &>* {
+        margin: 15px;
     }
 }

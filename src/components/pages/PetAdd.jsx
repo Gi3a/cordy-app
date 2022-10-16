@@ -130,7 +130,7 @@ const PetAdd = () => {
     return (
         <div className="page">
             <form onSubmit={handleSubmit(onSubmit)}>
-                <h2>Добавить питомца</h2>
+                <h1>Добавить питомца</h1>
 
                 <div className="form-control">
                     <label>Имя питомца</label>
@@ -282,7 +282,7 @@ const PetAdd = () => {
 
 
                 <div className="form-control">
-                    <Button type="submit" text="Добавить питомца" />
+                    <Button type="submit" text="Добавить питомца" flag="true" />
                 </div>
             </form >
         </div>

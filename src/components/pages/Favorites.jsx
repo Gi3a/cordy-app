@@ -41,7 +41,7 @@ const Favorites = () => {
 
     return (
         <div className="page">
-            <PetList pets={favourites} />
+            <PetList pets={favourites} my_favourties={true} />
         </div>
     )
 }

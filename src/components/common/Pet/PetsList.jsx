@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { useAuth } from "../../hooks/useAuth";
+import { useNavigate } from 'react-router-dom';
+import Button from "../../ui/Button/Button";
 
 import styles from "./Pet.module.scss";
 import PetItem from "./PetItem";
 
-const PetList = ({ pets }) => {
+const PetList = ({ pets, my_pets, my_favourties }) => {
 
     const { id, jwttoken } = useAuth();
+    let navigate = useNavigate();
 
     const owner_id = id;
     const owner_token = jwttoken;
@@ -53,7 +56,18 @@ const PetList = ({ pets }) => {
                     })}
                 </>
                 :
-                <h2>Нет питомцев</h2>
+                <div className="message">
+                    <h1>Нет питомцев</h1>
+                    {my_pets &&
+                        <>
+                            <p>Добавьте своих питомцев</p>
+                            <Button text="Добавить питомца" flag="true" onClick={() => navigate("/pet")} />
+                        </>
+                    }
+                    {my_favourties &&
+                        <p>Добавляйте в избранное понравившихся питомцев</p>
+                    }
+                </div>
             }
         </div>
     )

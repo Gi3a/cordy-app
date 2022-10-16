@@ -239,7 +239,7 @@ const UserEdit = () => {
             </div>
 
             <div className="form-control">
-                <Button type="submit" text="Сохранить" />
+                <Button type="submit" text="Сохранить" flag="true" />
             </div>
         </form >
     </div>

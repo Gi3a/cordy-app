@@ -45,7 +45,7 @@ const Pets = () => {
 
     return (
         <div className="page">
-            <PetList pets={pets} />
+            <PetList pets={pets} my_pets={true} />
         </div>
     )
 }

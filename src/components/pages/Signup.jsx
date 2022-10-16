@@ -1,9 +1,9 @@
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { setUser } from "../../store/features/user/userSlice";
 import { setLoad } from "../../store/features/load/loadSlice";
-
+import Paws from '../../assets/images/icons/paws.svg';
 import { toast } from 'react-toastify';
 
 import axios from 'axios';
@@ -70,7 +70,7 @@ const Signup = () => {
     return (
         <div className="page">
             <form onSubmit={handleSubmit(onSubmit)}>
-                <h2>Регистрация</h2>
+                <h1>Регистрация</h1>
 
                 <div className="form-control">
                     <label>Email</label>
@@ -169,9 +169,16 @@ const Signup = () => {
                 </div>
 
                 <div className="form-control">
-                    <Button type="submit" text="Зарегестрироваться" />
+                    <Link to="/login">
+                        Есть аккаунт - Войдите
+                    </Link>
+                </div>
+
+                <div className="form-control">
+                    <Button type="submit" text="Зарегестрироваться" flag="true" />
                 </div>
             </form >
+            <img src={Paws} alt="Paws" className="paws" />
         </div>
     )
 }

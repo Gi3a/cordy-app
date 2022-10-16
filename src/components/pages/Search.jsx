@@ -11,6 +11,7 @@ import { setLoad } from "../../store/features/load/loadSlice";
 import Button from '../ui/Button/Button';
 
 import { FaSearch, FaFilter } from "react-icons/fa";
+import PetList from '../common/Pet/PetsList';
 
 const Search = () => {
 
@@ -18,6 +19,9 @@ const Search = () => {
 
     let navigate = useNavigate();
     const dispatch = useDispatch();
+    const [pets, setPets] = useState([]);
+
+
 
     const {
         register,
@@ -35,7 +39,7 @@ const Search = () => {
         handleLoading();
         await axios({
             method: "post",
-            url: `https://cordy-app.herokuapp.com/users/${id}/cats`,
+            url: `https://cordy-app.herokuapp.com/cats/filter`,
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": `Bearer ${jwttoken}`
@@ -43,7 +47,8 @@ const Search = () => {
             data: data
         })
             .then(function (response) {
-                console.log(response);
+                console.log(response.data);
+                setPets(...pets, response.data);
                 handleLoading();
             })
             .catch(function (error) {
@@ -63,18 +68,19 @@ const Search = () => {
 
     return (
         <div className="page">
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <form onSubmit={handleSubmit(onSubmit)} className="search">
                 <div className="form-control form-search">
                     <Button id={"btn_filter"} text={<FaFilter />} flag={true} />
                     <input
                         type="text"
-                        name="name"
-                        placeholder="Введит поиск запроса. Например: Балийская кошка или Турецкий ван..."
-                        {...register("name")}
+                        name="search"
+                        placeholder="Введит поиск запроса. Например: Балийская кошка"
+                        {...register("search")}
                     />
                     <Button id={"btn_search"} text={<FaSearch />} type="submit" flag={true} />
                 </div>
             </form>
+            <PetList pets={pets} />
         </div>
     )
 }

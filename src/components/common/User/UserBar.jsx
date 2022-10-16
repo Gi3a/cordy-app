@@ -8,6 +8,8 @@ import styles from "./User.module.scss";
 import { useNavigate } from 'react-router-dom';
 import { unsetUser } from '../../../store/features/user/userSlice';
 
+import { FaPowerOff, FaUserEdit, FaRegCommentDots } from "react-icons/fa"
+
 const UserBar = ({ user, my_profile }) => {
 
     let navigate = useNavigate();
@@ -19,13 +21,6 @@ const UserBar = ({ user, my_profile }) => {
         <div className={styles.user_bar}>
             <div className={styles.user_avatar}>
                 <img src={`${avatar}`} alt="avatar" />
-                <Button text="Отзывы" onClick={() => navigate(`/${id}/feedbacks`)} />
-                {my_profile &&
-                    <>
-                        <Button text="Редактировать профиль" onClick={() => navigate("/profile/edit")} />
-                        <Button text="Выйти из аккаунта" onClick={() => dispatch(unsetUser())} />
-                    </>
-                }
             </div>
             <div className={styles.user_description}>
                 <span><b>Логин:</b> {login}</span>
@@ -34,6 +29,21 @@ const UserBar = ({ user, my_profile }) => {
                 <span><b>Email:</b> {mail}</span>
                 <span><b>Адрес:</b> {address}</span>
                 <span><b>Ранг:</b> {ranking}</span>
+                <div className={styles.buttons}>
+                    <Button text="Отзывы" onClick={() => navigate(`/${id}/feedbacks`)}>
+                        <FaRegCommentDots />
+                    </Button>
+                    {my_profile &&
+                        <>
+                            <Button text="Редактировать профиль" onClick={() => navigate("/profile/edit")}>
+                                <FaUserEdit />
+                            </Button>
+                            <Button text="Выйти" onClick={() => dispatch(unsetUser())}>
+                                <FaPowerOff />
+                            </Button>
+                        </>
+                    }
+                </div>
             </div>
         </div>
     )

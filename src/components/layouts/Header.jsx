@@ -14,51 +14,44 @@ const Header = () => {
 
     return (
         <header>
-            <nav>
-                <div className="nav__logo">
-                    <Link to="/">
-                        <img src={Paws} alt="Paws" />
-                        TiNimal
-                    </Link>
-                </div>
-                <div className="nav__menu">
-                    {isAuth ?
-                        <>
-                            <Link to="/search">
-                                <TbSearch />
-                                <span>Поиск</span>
-                            </Link>
-                            <Link to="/favorites">
-                                <TbHeart />
-                                <span>Избранное</span>
-                            </Link>
-                            <Link to="/pet">
-                                <TbSquarePlus />
-                                <span>Добавить Питомца</span>
-                            </Link>
-                            <Link to={`/pets/${id}`}>
-                                <MdPets />
-                                <span>Мои Питомцы</span>
-                            </Link>
-                            <Link to={`/${id}`}>
-                                <TbUser />
-                                <span>{name}</span>
-                            </Link>
-                        </>
-                        :
-                        <>
-                            <Link to="/signup">
-                                <MdPets />
-                                Signup
-                            </Link>
-                            <Link to="/login">
-                                <MdLogin />
-                                Login
-                            </Link>
-                        </>
-                    }
-                </div>
-            </nav>
+            {isAuth ?
+                <nav>
+                    <div className="nav__logo">
+                        <Link to="/">
+                            <MdPets />
+                            <span>TiNimal</span>
+                        </Link>
+                    </div>
+                    <div className="nav__menu">
+
+
+                        <Link to="/search">
+                            <TbSearch />
+                            <span>Поиск</span>
+                        </Link>
+                        <Link to="/favorites">
+                            <TbHeart />
+                            <span>Избранное</span>
+                        </Link>
+                        <Link to="/pet">
+                            <TbSquarePlus />
+                            <span>Добавить Питомца</span>
+                        </Link>
+                        <Link to={`/pets/${id}`}>
+                            <MdPets />
+                            <span>Мои Питомцы</span>
+                        </Link>
+                        <Link to={`/${id}`}>
+                            <TbUser />
+                            <span>{name}</span>
+                        </Link>
+
+
+                    </div>
+                </nav>
+                :
+                <></>
+            }
         </header>
     )
 }
