@@ -220,7 +220,7 @@ const PetAdd = () => {
                     <input
                         type="checkbox"
                         name="passport"
-                        {...register("passport",)}
+                        {...register("passport")}
                     />
                     {errors.passport && <span>{errors.passport.message}</span>}
                 </div>
@@ -230,17 +230,17 @@ const PetAdd = () => {
                     <input
                         type="checkbox"
                         name="vaccination"
-                        {...register("vaccination",)}
+                        {...register("vaccination")}
                     />
                     {errors.vaccination && <span>{errors.vaccination.message}</span>}
                 </div>
 
                 <div className="form-control form-bool">
-                    <label>Вакцинация питомца</label>
+                    <label>Сертификаты питомца</label>
                     <input
                         type="checkbox"
                         name="certificates"
-                        {...register("certificates",)}
+                        {...register("certificates")}
                     />
                     {errors.certificates && <span>{errors.certificates.message}</span>}
                 </div>

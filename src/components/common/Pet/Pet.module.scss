@@ -7,7 +7,6 @@
 
     background-color: #f0f3f6;
     border: 1px solid #e5e5e5;
-    ;
     border-radius: 4px;
     overflow: hidden;
     transition: 0.2s ease-in-out;
@@ -96,6 +95,12 @@
                 color: #1e2532;
                 font-size: 14px;
             }
+
+            @media (min-width: 150px) and (max-width: 768px) {
+                padding: 5px 0;
+                justify-content: flex-start;
+                align-items: flex-start;
+            }
         }
     }
 
@@ -155,7 +160,7 @@
     @media (min-width: 769px) and (max-width: 1024px) {}
 
     @media (min-width: 150px) and (max-width: 768px) {
-        padding: 0 40px;
+        padding: 0;
 
         & h2 {
             margin-top: 25px;
@@ -169,8 +174,11 @@
 
     justify-content: space-around;
 
-    background-color: #C2D5E0;
-    ;
+
+    background-color: #f0f3f6;
+    border: 1px solid #e5e5e5;
+    border-radius: 4px;
+    box-shadow: rgb(15 56 113 / 32%) 0px 0px 1px, rgb(15 56 113 / 12%) 0px 1px 2px, rgb(15 56 113 / 8%) 0px 2px 4px;
     padding: 40px;
     margin: 15px;
     font-size: 18px;
@@ -197,6 +205,7 @@
 
     }
 
+
     & .owner_description {
         display: flex;
         flex-direction: column;
@@ -219,6 +228,7 @@
     @media (min-width: 150px) and (max-width: 768px) {
         flex-direction: column;
         margin: 0;
+        padding: 5px 0;
 
         & .owner_avatar {
             width: 100%;
@@ -296,7 +306,8 @@
 
     @media (min-width: 150px) and (max-width: 768px) {
         flex-direction: column;
-        margin: 0;
+        margin: 25px 0;
+        padding: 5px 0;
 
 
         &>div {

@@ -40,7 +40,7 @@ const PetItem = ({
                     <span>{name}</span>
                     <span><FaRubleSign />{price}</span>
                     <span><MdPets />{breed}</span>
-                    <span><MdLocationPin />{owner_address}</span>
+                    <span><MdLocationPin />{owner_address} {address}</span>
                 </div>
             </Link>
         </div>

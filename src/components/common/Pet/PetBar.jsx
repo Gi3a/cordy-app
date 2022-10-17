@@ -2,12 +2,14 @@ import React, { useState, useEffect } from "react";
 import Button from "../../ui/Button/Button";
 import styles from "./Pet.module.scss";
 
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
 import { FaHeart, FaRegHeart } from "react-icons/fa";
+import { BsGenderFemale, BsGenderMale } from "react-icons/bs";
+import { GoVerified } from "react-icons/go";
 import Image from "../../ui/Image/Image";
 
 const PetBar = (pet) => {
@@ -155,7 +157,7 @@ const PetBar = (pet) => {
         <>
             <div className={styles.owner_bar}>
                 <Image src={`${owner_avatar}`} className={styles.owner_avatar} />
-                <div className={styles.owner_description}>
+                <Link to={`/${owner_id}`} className={styles.owner_description}>
                     <div>
                         <span><b>Владелец:</b>{owner_name}</span>
                     </div>
@@ -163,13 +165,13 @@ const PetBar = (pet) => {
                         <span><b>Ранг:</b>{owner_ranking}</span>
                         <span><b>Количество фидбеков:</b>{count_feedback}</span>
                     </div>
-                </div>
+                </Link>
             </div>
             <div className={styles.pet_bar}>
 
                 <div className={styles.pet_photo}>
                     <img src={`${photo}`} alt="pet_photo" />
-                    {parseInt(parseInt(pet.my_id) === parseInt(owner_id)) ?
+                    {parseInt(pet.my_id) != parseInt(owner_id) ?
                         <div className={styles.buttons}>
                             <Button text="Позвонить" onClick={() => window.location = `tel:${owner_mail}`} smll={true} />
                             <Button text="Написать email" onClick={() => window.location = `mailto:${owner_mail}`} smll={true} />
@@ -200,13 +202,13 @@ const PetBar = (pet) => {
                     <span><b>Имя:</b>{name}</span>
                     <span><b>Порода:</b> {breed}</span>
                     <span><b>Возраст:</b> {age}</span>
-                    <span><b>Пол:</b> {sex}</span>
+                    <span><b>Пол:</b> {sex ? <BsGenderFemale /> : <BsGenderMale />}</span>
                     <span><b>Стоимость:</b> {price}</span>
                     <span><b>Адрес:</b> {owner_address}</span>
-                    <span><b>Паспорт:</b> {passport}</span>
-                    <span><b>Вакцинация:</b> {vaccination}</span>
-                    <span><b>Сертификаты:</b> {certificates}</span>
-                    <span><p>{info}</p></span>
+                    <span><b>Паспорт:</b> {passport ? <GoVerified /> : '-'}</span>
+                    <span><b>Вакцинация:</b> {vaccination ? <GoVerified /> : '-'}</span>
+                    <span><b>Сертификаты:</b> {certificates ? <GoVerified /> : '-'}</span>
+                    <span><b>Описание:</b>{info}</span>
                 </div>
             </div>
         </>

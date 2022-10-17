@@ -70,7 +70,6 @@ const Search = () => {
         <div className="page">
             <form onSubmit={handleSubmit(onSubmit)} className="search">
                 <div className="form-control form-search">
-                    <Button id={"btn_filter"} text={<FaFilter />} flag={true} />
                     <input
                         type="text"
                         name="search"
